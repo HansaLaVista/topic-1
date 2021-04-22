@@ -49,8 +49,10 @@ class Confetties {
       float ay = cosine * confetti1.speedVector.y - sine * confetti1.speedVector.x;
       PVector aVector = new PVector(ax ,ay );
       // change of the movement vector of the first confetti
-      confetti1.set_speed(aVector);                   
-
+      confetti1.set_speed(aVector);  
+      
+      //aVector.x = cosine * confetti2.speedVector.x + sine * confetti2.speedVector.y;
+      //aVector.y = cosine * confetti2.speedVector.y - sine * confetti2.speedVector.x;
       ax = cosine * confetti2.speedVector.x + sine * confetti2.speedVector.y;
       ay = cosine * confetti2.speedVector.y - sine * confetti2.speedVector.x;
       aVector = new PVector(ax, ay);
