@@ -4,7 +4,7 @@ class Confetties {
 
   //this makes an array of 30 confettis
   Confetti[] confetti = new Confetti[MAX_CONFETTI]; 
-  // number of confettis that is created already
+  // number of confettis that is created alreaspeedVector.y
   int generated;
 
   Confetties() {
@@ -35,8 +35,8 @@ class Confetties {
     // compare each confetti with all confettis having a higher index
     // where the actual highest index is i
 
-    float distx = confetti2.xpos+confetti2.dx - confetti1.xpos-confetti1.dx;
-    float disty = confetti2.ypos+confetti2.dy - confetti1.ypos-confetti1.dy;
+    float distx = confetti2.posVector.x+confetti2.speedVector.x - confetti1.posVector.x-confetti1.speedVector.x;
+    float disty = confetti2.posVector.y+confetti2.speedVector.y - confetti1.posVector.y-confetti1.speedVector.y;
     float distance = sqrt(distx*distx + disty*disty);
     float minDist = confetti1.radius + confetti2.radius;
 
@@ -45,17 +45,17 @@ class Confetties {
       float sine = sin(angle);
       float cosine = cos(angle); 
 
-      float ax = cosine * confetti1.dx + sine * confetti1.dy;
-      float ay = cosine * confetti1.dy - sine * confetti1.dx;
-
+      float ax = cosine * confetti1.speedVector.x + sine * confetti1.speedVector.y;
+      float ay = cosine * confetti1.speedVector.y - sine * confetti1.speedVector.x;
+      PVector aVector = new PVector(ax ,ay );
       // change of the movement vector of the first confetti
-      confetti1.set_speed(ax, ay);                   
+      confetti1.set_speed(aVector);                   
 
-      ax = cosine * confetti2.dx + sine * confetti2.dy;
-      ay = cosine * confetti2.dy - sine * confetti2.dx;
-
+      ax = cosine * confetti2.speedVector.x + sine * confetti2.speedVector.y;
+      ay = cosine * confetti2.speedVector.y - sine * confetti2.speedVector.x;
+      aVector = new PVector(ax, ay);
       // change of the movement vector of the second confetti
-      confetti2.set_speed(ax, ay);
+      confetti2.set_speed(aVector);
     }
   }
 

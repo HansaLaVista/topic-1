@@ -1,11 +1,12 @@
 class Confetti {
   
   color c;        // a confetti has a colour
-  float xpos;     // a confetti has an x-position
-  float ypos;     // a confetti has an y-position
+  //float posVector.x;     // a confetti has an x-position
+  //float posVector.y;     // a confetti has an y-position
   float radius;    // a confetti has a radius;
-  float dx;       // the confetti moves with some speed in x direction
-  float dy;       // the confetti moves with some speed in y direction
+  //float speedVector.x;       // the confetti moves with some speed in x direction
+  //float speedVector.y;       // the confetti moves with some speed in y direction
+  PVector speedVector, posVector;
   
   //constructor: gives values to the variables
   Confetti() { 
@@ -14,37 +15,40 @@ class Confetti {
     
     //random radius and position
     radius = random(10,25);
-    xpos = int(random(radius,width-radius));
-    ypos = int(random(radius,height-radius));
+    posVector = new PVector(int(random(radius,width-radius)), int(random(radius,height-radius)));
+    //posVector.x = int(random(radius,width-radius));
+    //posVector.y = int(random(radius,height-radius));
     
     // random speed
-    dx = int(random(-3,4));               // speed in x-direction
-    while (dx==0) dx = int(random(-3,4)); // nonzero speed
-    dy = int(random(-3,4));               // speed in y-direction
-    while (dy==0) dy = int(random(-3,4)); // nonzero speed
+    speedVector = new PVector(int(random(-3,4)),int(random(-3,4)));
+    //speedVector.x = int(random(-3,4));               // speed in x-direction
+    while (speedVector.x==0) speedVector.x = int(random(-3,4)); // nonzero speed
+    //speedVector.y = int(random(-3,4));               // speed in y-direction
+    while (speedVector.y==0) speedVector.y = int(random(-3,4)); // nonzero speed
   }
     
   void render() {
     //noStroke();
     fill(c);
-    ellipse(xpos, ypos, 2*radius, 2*radius);
+    ellipse(posVector.x, posVector.y, 2*radius, 2*radius);
   }
   
   void update() {
     //if the confetti reaches the left wall or the right wall, it bounces
-    if ((xpos > width - radius - dx) || (xpos < radius - dx)) {
-      dx = -dx;
+    if ((posVector.x > width - radius - speedVector.x) || (posVector.x < radius - speedVector.x)) {
+      speedVector.x = -speedVector.x;
     }
-    xpos = xpos + dx;
+    posVector.x = posVector.x + speedVector.x;
     //if the confetti reaches the top wall or the botton wall, it bounces
-    if ((ypos > height - radius - dy) || (ypos < radius - dy)) {
-      dy = -dy;
+    if ((posVector.y > height - radius - speedVector.y) || (posVector.y < radius - speedVector.y)) {
+      speedVector.y = -speedVector.y;
     }
-    ypos = ypos + dy;
+    posVector.y = posVector.y + speedVector.y;
   }
   
-  void set_speed(float dx, float dy){
-    this.dx = dx;
-    this.dy = dy;
+  void set_speed(PVector speedVector){
+    this.speedVector = speedVector;
+    //this.speedVector.x = dx;
+    //this.speedVector.y = dy;
   }  
 }
