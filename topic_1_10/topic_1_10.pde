@@ -1,5 +1,5 @@
 
-redDot[] RedDot = new redDot[500];
+redDot[] RedDot = new redDot[1000];
 
 
 void setup() {
@@ -14,13 +14,12 @@ void setup() {
 }
 
 
-void draw(){
-  
+void draw() {
+
   background(255);
-  
-   for (int i = 0; i < RedDot.length; i++) {
+
+  for (int i = 0; i < RedDot.length; i++) {
 
     RedDot[i].redDotDisplay();
   }
-  
 }

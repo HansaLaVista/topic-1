@@ -1,4 +1,4 @@
-String binNumb = "110101";
+String binNumb = "11010101";
 int decNumb = 0;
 for (int i = 0; i< binNumb.length(); i++) {
   if(binNumb.charAt(i)=='1'){
