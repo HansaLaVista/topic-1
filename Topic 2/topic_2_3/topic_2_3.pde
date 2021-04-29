@@ -1,17 +1,18 @@
 // Felipe Ramires and Hans Nielen for Algorithms in Create
 // April 2021
 
-blueDot[] blueDot = new blueDot[1000];
+blueDot[] Dot = new blueDot[250];
 
 
 void setup() {
 
   size(400, 400);
+  background(255);
 
-
-  for (int i = 0; i < blueDot.length; i++) {
-
-    blueDot[i] = new blueDot(random(0,400),random(0,400));
+  
+  for (int i = 0; i < Dot.length; i++) {
+    
+    Dot[i] = new blueDot(width, height);
   }
 }
 
@@ -20,8 +21,8 @@ void draw() {
 
   background(255);
 
-  for (int i = 0; i < blueDot.length; i++) {
+  for (int i = 0; i < Dot.length; i++) {
 
-    blueDot[i].blueDotDisplay();
+    Dot[i].blueDotDisplay();
   }
 }
