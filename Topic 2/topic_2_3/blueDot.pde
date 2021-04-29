@@ -9,8 +9,6 @@ class blueDot {
 
   blueDot(int wit, int heit) {
     Pos =gaussianPos(wit, heit);
-    //dotX = gaussianPos.x;
-    //dotY = Pos.y;
     gSize = gaussianSize();
   }
 
@@ -18,7 +16,6 @@ class blueDot {
   void blueDotDisplay() {
     fill(0, 0, 200);
     noStroke();
-    float temp = gaussianSize();
     ellipse(Pos.x, Pos.y, gSize, gSize);
   }
   
