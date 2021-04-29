@@ -1,3 +1,5 @@
+// Felipe Ramires and Hans Nielen for Algorithms in Create
+// April 2021
 
 redDot[] RedDot = new redDot[1000];
 
