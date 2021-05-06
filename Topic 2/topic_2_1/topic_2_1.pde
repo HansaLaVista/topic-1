@@ -3,12 +3,12 @@
 
 int diceRoll() {                
   int numb = int(random(1, 7)); // random number between 1,7 for the 6 possible dice numbers
-  return numb;
+  return numb;         //return random value stored in the array
 }
 int[] counter= new int[6]; // array for the 6 dice numbers
-boolean ready = false;
+boolean ready = false;     //boolean so it only runs once
 void setup() {
-  size(200, 200); 
+  size(200, 200);         //setup for canvas and preset of arrays
   
   for (int i =0; i <6; i++) {
     counter[i] = 0;
@@ -21,8 +21,8 @@ void setup() {
 }
 void draw(){ 
   if(ready){
-  Printer();
-  ready = false;
+  Printer();      //call printer function
+  ready = false;  //only runs once this way
   }
 }
 
