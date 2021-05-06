@@ -1,5 +1,5 @@
-float xoff, yoff = 0.0;
-float xincrement = 0.01;
+float xoff, yoff = 0.0;    //set global variables for the positions in noispace
+float xincrement = 0.01;   //set the increments for the y and x coordinate in noisespace
 float yincrement = 0.015; 
 
 void setup() {
@@ -11,19 +11,16 @@ void setup() {
 void draw() {
   // Create an alpha blended background
   fill(0, 10);
-  rect(0,0,width,height);
-  
-  //float n = random(0,width);  // Try this line instead of noise
-  
+  rect(0, 0, width, height);  
   // Get a noise value based on xoff and scale it according to the window's width
-  float n = noise(xoff)*width;
-  float m = noise(yoff)*height;
-  
+  float n = noise(xoff)*width;  //assign xcoordinate
+  float m = noise(yoff)*height; //assign y coordinate
+
   // With each cycle, increment xoff
-  xoff += xincrement;
+  xoff += xincrement;    //update coordinates in noise space
   yoff += yincrement;
-  
+
   // Draw the ellipse at the value produced by perlin noise
-  fill(200);
-  ellipse(n,m, 64, 64);
+  fill(200);              //assign color and draw the circle
+  ellipse(n, m, 64, 64);
 }
