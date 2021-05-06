@@ -21,7 +21,6 @@ void draw() {
   beginShape();             //start shape for background terrain
   xoff = start;  
   for (x=0; x<=width; x++) {    //set coordinates for the entire screen
-
     vertex(x, 100-(noise(xoff)*75));  //use noise function to create terrain visual
     xoff += xincrement;      //move forward in noise domain
   }
