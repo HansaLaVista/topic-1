@@ -1,3 +1,6 @@
+// Felipe Ramires and Hans Nielen for Algorithms in Create
+// April 2021
+
 int diceRoll() {
   int[] numbersprob = new int[7];
   numbersprob[0] = 1;      //set 7 possiblilities but 2 are the same outcome

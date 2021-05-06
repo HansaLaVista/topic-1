@@ -6,18 +6,19 @@ class blueDot {
 
 
   blueDot(int wit, int heit) {    // blue dot constructor
-    Pos =gaussianPos(wit, heit); // 
-    gSize = gaussianSize();     //
+    Pos =gaussianPos(wit, heit); 
+    gSize = gaussianSize();     
   }
 
 
-  void blueDotDisplay() { // display the blue dots
+  void blueDotDisplay() { 
+    // display the blue dots with the values of the gaussian position and size
     fill(0, 0, 200);
     noStroke();
     ellipse(Pos.x, Pos.y, gSize, gSize);
   }
   
-  PVector gaussianPos(int widt, int heigt) { // position the blue dot with Pvector
+  PVector gaussianPos(int widt, int heigt) { // calculate the position of the dots using the randomGaussain function
     float sd = 60;
     float xgaus = (randomGaussian() * sd) + widt/2;
     float ygaus = (randomGaussian() * sd) + heigt/2;

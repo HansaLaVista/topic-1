@@ -1,3 +1,6 @@
+// Felipe Ramires and Hans Nielen for Algorithms in Create
+// April 2021
+
   int x=0;                  //set global variables
   float xoff,start=0.0;
   float xincrement=0.005;

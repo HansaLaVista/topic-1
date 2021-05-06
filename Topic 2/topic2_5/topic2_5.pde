@@ -1,3 +1,5 @@
+// Felipe Ramires and Hans Nielen for Algorithms in Create
+// April 2021
 float xoff, yoff = 0.0;    //set global variables for the positions in noispace
 float xincrement = 0.01;   //set the increments for the y and x coordinate in noisespace
 float yincrement = 0.015; 
