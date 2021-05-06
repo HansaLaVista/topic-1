@@ -1,33 +1,31 @@
-class blueDot {
+class blueDot { 
 
 
-  float dotX;
-  float dotY;
-  PVector Pos;
+  PVector Pos; // variables for dot position and size
   float gSize;
 
 
-  blueDot(int wit, int heit) {
-    Pos =gaussianPos(wit, heit);
-    gSize = gaussianSize();
+  blueDot(int wit, int heit) {    // blue dot constructor
+    Pos =gaussianPos(wit, heit); // 
+    gSize = gaussianSize();     //
   }
 
 
-  void blueDotDisplay() {
+  void blueDotDisplay() { // display the blue dots
     fill(0, 0, 200);
     noStroke();
     ellipse(Pos.x, Pos.y, gSize, gSize);
   }
   
-  PVector gaussianPos(int widt, int heigt) {
+  PVector gaussianPos(int widt, int heigt) { // position the blue dot with Pvector
     float sd = 60;
     float xgaus = (randomGaussian() * sd) + widt/2;
     float ygaus = (randomGaussian() * sd) + heigt/2;
-    PVector position = new PVector(xgaus, ygaus);
+    PVector position = new PVector(xgaus, ygaus); // 
     return position;
   }
   
-  float gaussianSize() {
+  float gaussianSize() {  
     float sd = 8;
     float size = (randomGaussian()*sd) + 10;
     return size;
