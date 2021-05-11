@@ -5,19 +5,19 @@ class Catapult {
   }
 
 
-  void catapultDisplay() {
+  void Display() {
   }
 
 
-  void catapultUpdate() {
+  void Update() {
   }
   
-  void catapulDragged(){
+  void Dragged(){
     
     
   }
   
-  void catapultReleased(){
+  void Released(){
     
     
   }
