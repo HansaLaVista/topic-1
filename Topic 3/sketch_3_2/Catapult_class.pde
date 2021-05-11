@@ -1,17 +1,17 @@
 class Catapult {
 
-Ball ball = new Ball(new PVector(0,0));
-PVector sPos = new PVector(0,0);
-PVector posChange;
+Ball ball = new Ball(new PVector(0,0));    //create object within class
+PVector sPos = new PVector(0,0);           //initiate starting position vector and position
+PVector posChange;                         //change vector
   Catapult(PVector Pos, Ball ball) {
-    this.ball = ball;
-    this.sPos = Pos;
+    this.ball = ball;                      //set ball to the same ball as in the main class
+    sPos = Pos;                            //set starting position           
   }
 
 
-  void Display() {
-    fill(139,69,19);
-    beginShape();
+  void Display() {                         
+    fill(139,69,19);                       //set catapult colour
+    beginShape();                          //start vertex based catapult shape
     vertex(sPos.x,sPos.y+50);
     vertex(sPos.x+50,sPos.y-10);
     vertex(sPos.x+60,sPos.y-10);
@@ -24,19 +24,15 @@ PVector posChange;
     vertex(sPos.x,sPos.y+50);
     endShape();    
   }
-
-
-  void Update() {
-  }
   
   void Dragged(int x, int y){
-    posChange = new PVector(x,y);
-    ball.dragged(posChange);
+    posChange = new PVector(x,y);          //set position change vector based on mouse x and y passed beforehand
+    ball.dragged(posChange);               //call ball dragging function in ball object
   }
   
   void Released(){
-    PVector speedSet = new PVector((sPos.x-posChange.x)/7, (sPos.y-posChange.y)/7);
-    ball.ballLaunch(speedSet);
+    PVector speedSet = new PVector((sPos.x-posChange.x)/7, (sPos.y-posChange.y)/7);  //set speed using
+    ball.ballLaunch(speedSet);             //the starting position of the ball
     
   }
 }
