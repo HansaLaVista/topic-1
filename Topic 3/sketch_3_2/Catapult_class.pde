@@ -1,7 +1,9 @@
 class Catapult {
 
+Ball ball = new Ball(new PVector(0,0), new PVector(3,4));
 
-  Catapult() {
+  Catapult(PVector sPos, Ball ball) {
+    this.ball = ball
   }
 
 
