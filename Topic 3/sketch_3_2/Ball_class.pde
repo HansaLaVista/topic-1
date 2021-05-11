@@ -4,19 +4,20 @@ class Ball{
   PVector speed;
   PVector acceleration = new PVector(-0.008,0.2);
   Ball(PVector start, PVector startSpeed){
-  pos = start;
+  pos = start.copy();
   speed = startSpeed;
   }
   
   void ballDisplay(){
+    fill(255,30,30);
     ellipse(pos.x, pos.y, sizeBall, sizeBall);
   }
   
   void ballUpdate(){
-    if (pos.y >=400){
-     acceleration = new PVector(0,0);
-     println(speed.x);     
+    if (pos.y >=500){
+     acceleration = new PVector(0,0);   
      speed = new PVector(0,0);
+     pos = start.copy();
 
     }
     pos.add(speed);
@@ -26,6 +27,9 @@ class Ball{
   
   void ballLaunch(){
     
+  }
+  void click(int x, int y){
+   pos = new PVector(x, y); 
   }
   
 }
