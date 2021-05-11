@@ -1,7 +1,8 @@
 class Catapult {
 
-Ball ball = new Ball(new PVector(0,0), new PVector(3,4));
+Ball ball = new Ball(new PVector(0,0));
 PVector sPos = new PVector(0,0);
+PVector posChange;
   Catapult(PVector Pos, Ball ball) {
     this.ball = ball;
     this.sPos = Pos;
@@ -21,20 +22,21 @@ PVector sPos = new PVector(0,0);
     vertex(sPos.x-60,sPos.y-10);
     vertex(sPos.x-50,sPos.y-10);
     vertex(sPos.x,sPos.y+50);
-    endShape();
-    
+    endShape();    
   }
 
 
   void Update() {
   }
   
-  void Dragged(){
-    
+  void Dragged(int x, int y){
+    posChange = new PVector(x,y);
+    ball.dragged(posChange);
   }
   
   void Released(){
-    
+    PVector speedSet = new PVector((sPos.x-posChange.x)/7, (sPos.y-posChange.y)/7);
+    ball.ballLaunch(speedSet);
     
   }
 }

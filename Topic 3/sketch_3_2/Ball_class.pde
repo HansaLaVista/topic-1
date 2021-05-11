@@ -3,9 +3,11 @@ class Ball{
   PVector pos;
   PVector speed;
   PVector acceleration = new PVector(-0.008,0.2);
-  Ball(PVector start, PVector startSpeed){
+  boolean shot = false;
+  Ball(PVector start){
   pos = start.copy();
-  speed = startSpeed;
+  speed = new PVector(0,0);
+
   }
   
   void ballDisplay(){
@@ -14,22 +16,29 @@ class Ball{
   }
   
   void ballUpdate(){
-    if (pos.y >=500){
-     acceleration = new PVector(0,0);   
-     speed = new PVector(0,0);
-     pos = start.copy();
-
-    }
+    if (shot){
     pos.add(speed);
     speed.add(acceleration);
-    //speed.mult(0.995);
+    }
+    if (pos.y >=500){  
+     speed = new PVector(0,0);
+     pos = start.copy();
+     shot = false;
+    }    
   }
   
-  void ballLaunch(){
-    
+  void ballLaunch(PVector setSpeed){
+    speed = setSpeed.copy();
+    shot = true;
   }
-  void click(int x, int y){
-   pos = new PVector(x, y); 
+  void dragged(PVector drag){
+   pos = drag.copy(); 
+  }
+  PVector callPos(){
+    return(pos);
+  }
+  boolean callShot(){
+    return(shot);
   }
   
 }
