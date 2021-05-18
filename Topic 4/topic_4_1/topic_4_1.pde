@@ -2,12 +2,17 @@
 //Topic 4 particles
 //Assignment 4.1
 Firework firework;
-ParticleSystem particlesystem;
+ParticleSystem [] particlesystem;
+int systemCount;
 
 void setup() {
   size(1000, 600);
+  systemCount = 0;
   firework = new Firework(width, height);
-  particlesystem = new ParticleSystem();
+  particlesystem = new ParticleSystem[3];
+  for (int i = 0; i<3; i++){
+  particlesystem[i] = new ParticleSystem();
+  }
 }
 
 void draw() {
@@ -15,10 +20,15 @@ void draw() {
   firework.update();
   firework.render();
   if (firework.explosion()) {
-    particlesystem.begin(firework.position(),firework.size());    
+    particlesystem[systemCount].begin(firework.position(),firework.size());    
     firework = new Firework(width, height);    
-
+    systemCount++;
+    if (systemCount>2){
+     systemCount = 0; 
+    }
   }
-  particlesystem.update();
-  particlesystem.render();
+  for(int i=0;i<3;i++){
+  particlesystem[i].update();
+  particlesystem[i].render();
+  }
 }
