@@ -1,7 +1,7 @@
 class Catapult {
 
-Ball ball = new Ball(new PVector(0,0));    //create object within class
-PVector sPos = new PVector(0,0);           //initiate starting position vector and position
+Ball ball;                                 //create object within class
+PVector sPos;                              //initiate starting position vector and position
 PVector posChange;                         //change vector
   Catapult(PVector Pos, Ball ball) {
     this.ball = ball;                      //set ball to the same ball as in the main class

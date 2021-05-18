@@ -2,7 +2,7 @@
 // April 2021
 float xoff, yoff = 0.0;    //set global variables for the positions in noispace
 float xincrement = 0.01;   //set the increments for the y and x coordinate in noisespace
-float yincrement = 0.015; 
+float yincrement = 0.02; 
 
 void setup() {
   size(640, 360);
@@ -23,6 +23,6 @@ void draw() {
   yoff += yincrement;
 
   // Draw the ellipse at the value produced by perlin noise
-  fill(200);              //assign color and draw the circle
-  ellipse(n, m, 64, 64);
+  fill(200,60,60);              //assign color and draw the circle
+  ellipse(n, m, 100, 100);
 }
