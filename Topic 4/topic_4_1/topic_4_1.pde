@@ -4,15 +4,19 @@
 Firework firework;
 ParticleSystem [] particlesystem;
 int systemCount;
+int systemAmount;
 
 void setup() {
   size(1000, 600);
   systemCount = 0;
+  systemAmount = 4;
   firework = new Firework(width, height);
-  particlesystem = new ParticleSystem[3];
-  for (int i = 0; i<3; i++){
+  particlesystem = new ParticleSystem[systemAmount];
+  for (int i = 0; i<systemAmount; i++){
   particlesystem[i] = new ParticleSystem();
+
   }
+    particlesystem[systemAmount-1].begin(firework.position(),firework.size(),systemAmount);
 }
 
 void draw() {
@@ -23,11 +27,12 @@ void draw() {
     particlesystem[systemCount].begin(firework.position(),firework.size());    
     firework = new Firework(width, height);    
     systemCount++;
-    if (systemCount>2){
+    if (systemCount>=systemAmount-1){
      systemCount = 0; 
     }
+    particlesystem[systemAmount-1].begin(firework.position(),firework.size(),systemAmount);
   }
-  for(int i=0;i<3;i++){
+  for(int i=0;i<systemAmount;i++){
   particlesystem[i].update();
   particlesystem[i].render();
   }

@@ -9,7 +9,7 @@ class Firework {
   Firework(int xSize, int ySize) {
     pos = new PVector(random(100, xSize-100), 650);
     speed = new PVector(random(0, 4)-2, random(-6, -2));
-    size = random(1, 3);
+    size = random(1, 3)/3;
     explodeTime = ySize*random(.1,.8);
     angle = asin(speed.x/sqrt(pow(speed.x,2)+pow(speed.y,2)));
     boom = false;
