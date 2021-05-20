@@ -3,7 +3,6 @@ class ParticleSystem {
   Particle [] particles;
   int amount;
   boolean started=false;
-  boolean trail;
   int type;
   ParticleSystem() {
     type = int(random(0, 2));
@@ -32,13 +31,6 @@ class ParticleSystem {
 
     for (int i = 0; i<amount; i++) {
       particles[i] = new Particle(pos, fSize);
-    }
-  }
-  void begin(PVector pos, float fSize, int p) {
-    particles = new Particle [amount];
-    started = true;
-    for (int i = 0; i<amount; i++) {
-      particles[i] = new Particle(pos, fSize, p);
     }
   }
 }

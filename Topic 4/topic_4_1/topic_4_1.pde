@@ -16,7 +16,6 @@ void setup() {
   particlesystem[i] = new ParticleSystem();
 
   }
-    particlesystem[systemAmount-1].begin(firework.position(),firework.size(),systemAmount);
 }
 
 void draw() {
@@ -30,7 +29,6 @@ void draw() {
     if (systemCount>=systemAmount-1){
      systemCount = 0; 
     }
-    particlesystem[systemAmount-1].begin(firework.position(),firework.size(),systemAmount);
   }
   for(int i=0;i<systemAmount;i++){
   particlesystem[i].update();
