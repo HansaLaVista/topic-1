@@ -13,7 +13,7 @@ Flock flock;
 
 void setup() {
   size(900,450);
-  obstacle = new Rock(500,500);
+  obstacle = new Rock(width/2,height/2);
   flock = new Flock();
   // Add an initial set of boids into the system
   for (int i = 0; i < 20; i++) {
