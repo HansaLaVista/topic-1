@@ -1,8 +1,13 @@
 class Rock {
   
+
+PVector position;
   
   
-Rock(){
+  
+Rock(float x, float y){
+  
+  position = new PVector(x,y);
   
   
   
