@@ -9,9 +9,11 @@
 // Click mouse to add boids into the system
 
 Flock flock;
+  Rock obstacle;
 
 void setup() {
   size(900,450);
+  obstacle = new Rock(500,500);
   flock = new Flock();
   // Add an initial set of boids into the system
   for (int i = 0; i < 20; i++) {
@@ -23,6 +25,9 @@ void setup() {
 void draw() {
   background(0,128,128);
   flock.run();
+  obstacle.Display();
+
+  
   
   // Instructions
   fill(0);
