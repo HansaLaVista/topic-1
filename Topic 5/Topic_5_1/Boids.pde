@@ -23,8 +23,8 @@ class Boid {
     maxforce = 0.5;
   }
 
-  void run(ArrayList<Boid> boids) {
-    flock(boids);
+  void run(ArrayList<Boid> boids, Rock obstacle) {
+    flock(boids, obstacle);
     update();
     borders();
     render();
@@ -36,10 +36,11 @@ class Boid {
   }
 
   // We accumulate a new acceleration each time based on three rules
-  void flock(ArrayList<Boid> boids) {
+  void flock(ArrayList<Boid> boids, Rock obstacle) {
     PVector sep = separate(boids);   // Separation
     PVector ali = align(boids);      // Alignment
     PVector coh = cohesion(boids);   // Cohesion
+    PVector avo = avoidance(obstacle);
     // Arbitrarily weight these forces
     sep.mult(1.5);
     ali.mult(1.0);
@@ -48,6 +49,23 @@ class Boid {
     applyForce(sep);
     applyForce(ali);
     applyForce(coh);
+    applyForce(avo);
+  }
+  
+  PVector avoidance(Rock obstacle) {
+    PVector diff= new PVector(0,0);
+    float obstacleDistance = 50;
+    float d = PVector.dist(obstacle.pos(),position);
+    if (d<obstacleDistance+10){
+      diff = PVector.sub(position,obstacle.pos());
+    }
+    diff.normalize();
+    diff.div(d/2);
+    diff.mult(maxspeed);
+    diff.sub(velocity);
+    diff.limit(maxforce);
+    println(diff);
+    return diff;
   }
 
   // Method to update position
@@ -102,7 +120,7 @@ class Boid {
   // Separation
   // Method checks for nearby boids and steers away
   PVector separate (ArrayList<Boid> boids) {
-    float desiredseparation = 30.0f;
+    float desiredseparation = 20.0f;
     PVector steer = new PVector(0,0,0);
     int count = 0;
     // For every boid in the system, check if it's too close

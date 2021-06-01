@@ -12,12 +12,12 @@ Rock(float x, float y){
 
 void Display(){
   fill(0);
-  ellipse(position.x,position.y,100,50);
-  
-  
+  ellipse(position.x,position.y,50,50); 
 
 }
-  
+PVector pos(){  
+  return position;
+}
   
   
   
