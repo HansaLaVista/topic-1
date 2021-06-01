@@ -9,12 +9,12 @@
 // Click mouse to add boids into the system
 
 Flock flock;
-  Rock obstacle;
+Rock obstacle; // rock that flock should avoid
 
 void setup() {
   size(900,450);
-  obstacle = new Rock(width/2,height/2);
-  flock = new Flock();
+  obstacle = new Rock(width/2,height/2); // position of the rock
+  flock = new Flock(obstacle);
   // Add an initial set of boids into the system
   for (int i = 0; i < 20; i++) {
     Boid b = new Boid(width/2,height/2);
@@ -25,7 +25,7 @@ void setup() {
 void draw() {
   background(0,128,128);
   flock.run();
-  obstacle.Display();
+  obstacle.Display(); // display the rock
 
   
   

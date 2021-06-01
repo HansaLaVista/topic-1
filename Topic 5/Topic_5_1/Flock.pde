@@ -7,10 +7,13 @@
 
 class Flock {
   ArrayList<Boid> boids; // An ArrayList for all the boids
+  Rock obstacle;
 
 
-  Flock() {
+  Flock(Rock obstacle) {
     boids = new ArrayList<Boid>(); // Initialize the ArrayList
+    obstacle = new Rock(width/2,height/2);
+ 
  
   }
 
