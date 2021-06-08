@@ -1,39 +1,31 @@
-class Segment{
- float lengt, tempforce;
- float force,velocity,angle;
- float spring, damper, mass;
-  Segment(){
+class Segment {
+  float lengt, tempforce;
+  float force, velocity, angle;
+  float spring, damper, mass;
+  Segment() {
     lengt = 15;
-    force = 100;
-    tempforce = 100;
+    tempforce = 0.2;
     velocity = 0;
-    angle = 0;
+    angle = 10;
     spring = 0.3;
     damper = 0.1;
-    mass = .2;
-    
+    mass = 1;
   }
-  
-  void update(float otherVelo, float otherForce){
-    tempforce = tempforce - otherForce *.1;
-    velocity = otherVelo + tempforce/mass;
-    angle+=(velocity/360000*2*PI);
-    if (tempforce < 0.1){
-     force = force*(1-damper+0.05);
-     tempforce = -force;
-     //velocity= -velocity*.7;
-    }
-    //if (tempforce > -0.1 && tempforce >0){
-    // force = force*(1-damper);
-    // tempforce = -force;      
-    //}
-    println(tempforce);
+
+  void update(float otherVelo, float otherForce) {
+    tempforce = -tempforce + otherForce; // make last segment stop --> revise formulas
+    velocity = velocity + tempforce/mass;
+    velocity = velocity - otherVelo;
+    angle = angle + velocity;
+    tempforce = velocity * damper + angle/spring;
+   
   }
-  
-  void render(){
+
+
+  void render() {
     stroke(5);
     rotate(angle);    
-    line(0,0,0,-lengt);
-    translate(0,-lengt);    
+    line(0, 0, 0, -lengt);
+    translate(0, -lengt);
   }
 }

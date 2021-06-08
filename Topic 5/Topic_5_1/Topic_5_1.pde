@@ -16,6 +16,7 @@ void setup() {
   obstacle = new Rock(width/2,height/2); // position of the rock
   flock = new Flock(obstacle);
   // Add an initial set of boids into the system
+  
   for (int i = 0; i < 20; i++) {
     Boid b = new Boid(width/3,height/3);
     flock.addBoid(b);

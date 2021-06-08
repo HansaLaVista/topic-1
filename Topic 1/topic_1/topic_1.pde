@@ -6,7 +6,7 @@ void setup(){
 }
 
 void draw(){
- char [] input = {'D','E','N','T','I','S','E','O','N','O','D'};
+ char [] input = {'H','A','N','N','A','H'};
  while(millis()<2000){
  normalWrite(input);
  backwardsWrite(input);
