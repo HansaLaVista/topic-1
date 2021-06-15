@@ -5,20 +5,26 @@
 PVector start;       // starting positon vector
 Ball ball;          // calling class Ball
 Catapult catapult;   // calling class Catapult
+Wall wall;
 boolean dragging = false; // boolean for checking dragging
 
 void setup(){
   size(1000,500);
   start = new PVector(100, 4*height/5); // giving values for the starting position 
   background(50,120,78);
+  wall = new Wall(width, height, ball);
   ball = new Ball(start);  // ball and catapult have same starting position + creating new object ball and catapult
   catapult = new Catapult(start, ball);
 }
 
 void draw(){           // displaying background, ball and catapult
  background(50,120,78);
- ball.ballDisplay();
+
  ball.ballUpdate();
+ ball.ballDisplay(); 
+ wall.update();
+ wall.display(); 
+ 
  catapult.Display();
 }
 
