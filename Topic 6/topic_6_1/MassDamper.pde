@@ -1,7 +1,7 @@
 class MassDamper {
   Segment [] segments;
   flower flower;
-  int amount = 10;
+  int amount = 12;
   PVector startpos;
   MassDamper(int widt, int heigt) {
     startpos = new PVector(widt/2, heigt/4*3);
