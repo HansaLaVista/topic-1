@@ -12,8 +12,9 @@ void setup(){
   size(1000,500);
   start = new PVector(100, 4*height/5); // giving values for the starting position 
   background(50,120,78);
-  wall = new Wall(width, height, ball);
+
   ball = new Ball(start);  // ball and catapult have same starting position + creating new object ball and catapult
+  wall = new Wall(width, height, ball);  
   catapult = new Catapult(start, ball);
 }
 

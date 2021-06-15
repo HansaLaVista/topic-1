@@ -13,8 +13,8 @@ class Wall{
   }
   
   void update(){
-    tempPos = ball.callPos();
-    if(tempPos.x > Pos.x-sizeX/2 && tempPos.x < Pos.x+sizeX/2 && tempPos.y < Pos.y+sizeY/2){
+    tempPos = ball.pos;
+    if((tempPos.x > Pos.x-sizeX/2 && tempPos.x < Pos.x+sizeX/2&& tempPos.y > Pos.y-sizeY/2) ){
       wallcolor = color(random(255),random(255),random(255));
     }
   }
