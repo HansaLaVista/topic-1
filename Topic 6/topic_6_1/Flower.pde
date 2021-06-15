@@ -1,16 +1,16 @@
-class Flower {
+class flower {
 
   float pos;
   float size;
 
-  Flower() {
+  flower() {
     pos = 0;
     size = 50;
   }
 
 
   void RenderFlower() {
-    fill(150, 172, 192);
+    fill(255, 192, 10);
     ellipse(pos, pos, size, size);
   }
 }

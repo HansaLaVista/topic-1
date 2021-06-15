@@ -1,26 +1,26 @@
 class Segment {
   float lengt, tempforce;
-  float force, velocity, angle;
+  float force, velocity, velocity2 ,angle;
   float spring, damper, mass;
   Segment() {
     lengt = 15;
     tempforce = 0.2;
     velocity = 0;
-    angle = 10;
-    spring = 0.3;
-    damper = 0.1;
-    mass = 1;
+    velocity2 = 0;
+    angle = 0;
+    spring = 10;
+    damper = 1;
+    mass = 10;
   }
 
   void update(float otherVelo, float otherForce) {
-    tempforce = -tempforce + otherForce; // make last segment stop --> revise formulas
+    tempforce = -tempforce + otherForce; 
     velocity = velocity + tempforce/mass;
-    velocity = velocity - otherVelo;
-    angle = angle + velocity;
-    tempforce = velocity * damper + angle/spring;
-   
+    velocity2 = velocity - otherVelo;
+     angle = angle + velocity2;
+   tempforce = velocity2*damper + angle/spring;
+    println(tempforce);
   }
-
 
   void render() {
     stroke(5);
