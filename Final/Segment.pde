@@ -23,7 +23,7 @@ class Segment {
   }
 
   void render() {
-    fill(0, 255, 0);
+    fill(255, 0, 0);
     noStroke();
     rotate(angle);    
     rect(0, 0, 4, -lengt);

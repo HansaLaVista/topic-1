@@ -36,7 +36,7 @@ void setup() {
 
   systemCount = 0;                //give initial values to variables
   systemAmount = 4;
-  firework = new Firework(width, height);  //create object
+  firework = new Firework(width, height,ball);  //create object
   particlesystem = new ParticleSystem[systemAmount];  //create object array
   for (int i = 0; i<systemAmount; i++) {               //create the objects within array
     particlesystem[i] = new ParticleSystem();
@@ -60,7 +60,7 @@ void draw() {           // displaying background, ball and catapult
   firework.render();
   if (firework.explosion()) {  //checks if firework has exploded, starts explosion
     // particlesystem[systemCount].begin(firework.position(),firework.size());    
-    firework = new Firework(width, height);  //new firework 
+    firework = new Firework(width, height, ball);  //new firework 
     systemCount++;                           //variable increases for object array
     if (systemCount>=systemAmount-1) {        //variable resets
       systemCount = 0;

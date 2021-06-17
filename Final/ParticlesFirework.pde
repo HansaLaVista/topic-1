@@ -15,7 +15,7 @@ class Particle {
     Pos = pos.copy();
     Velocity = new PVector(random(-5, 5), random(-5, 5)); // velocity has random PVector values
     Acceleration = new PVector(.99, .99); // acceleration has random PVcetor values
-    partSize = (random(1, 5)*2*fSize);
+    partSize = (random(1, 5)*.05*fSize);
     partColour = color(random(255), random(255), random(255));
     alpha = 255;
     startTime = millis(); // start time for the partciles to start fading

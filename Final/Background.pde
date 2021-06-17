@@ -18,21 +18,17 @@ int xSize,ySize;
   xoff = start;  
 
 
-  for (x=0; x<=ySize; x++) {    //set coordinates for the entire screen
-    vertex(x, 100-(noise(xoff)*75));  //use noise function to create terrain visual
+  for (x=0; x<=xSize; x++) {    //set coordinates for the entire screen
+    vertex(x, ySize/2+(noise(xoff)*75));  //use noise function to create terrain visual
     xoff += xincrement;
   } 
 
-  vertex(800, 100);          //bottom parts of background terrain shape
-  vertex(0, 100); 
+  vertex(xSize, ySize);          //bottom parts of background terrain shape
+  vertex(0, ySize); 
   endShape();
- 
-   
-   
+    
  }
-  
-
-  
+    
 void move(char b){
   
   if( b == 'a'){
