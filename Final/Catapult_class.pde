@@ -1,47 +1,38 @@
-class Ball{
-  int sizeBall = 25;                              //initialise variables
-  PVector pos;
-  PVector speed;
-  PVector acceleration = new PVector(-0.008,0.2);  //set set gravity and 'wind resistance'
-  boolean shot = false;
-  int screenX, screenY;
-  Ball(PVector start, int widt, int heigt){
-    screenX = widt;
-    screenY = heigt;
-  pos = start.copy();                              //copy vector for start position
-  speed = new PVector(0,0);                        //set speed to 0
+class Catapult {
 
+Ball ball;                                 //create object within class
+PVector sPos;                              //initiate starting position vector and position
+PVector posChange;                         //change vector
+  Catapult(PVector Pos, Ball ball) {
+    this.ball = ball;                      //set ball to the same ball as in the main class
+    sPos = Pos;                            //set starting position           
+  }
+
+
+  void Display() {                         
+    fill(139,69,19);                       //set catapult colour
+    beginShape();                          //start vertex based catapult shape
+    vertex(sPos.x,sPos.y+50);
+    vertex(sPos.x+50,sPos.y-10);
+    vertex(sPos.x+60,sPos.y-10);
+    vertex(sPos.x+5,sPos.y+55);
+    vertex(sPos.x+5,sPos.y+90);
+    vertex(sPos.x-5,sPos.y+90);
+    vertex(sPos.x-5,sPos.y+55);
+    vertex(sPos.x-60,sPos.y-10);
+    vertex(sPos.x-50,sPos.y-10);
+    vertex(sPos.x,sPos.y+50);
+    endShape();    
   }
   
-  void ballDisplay(){
-    fill(255,30,30);                              //ball colour
-    ellipse(pos.x, pos.y, sizeBall, sizeBall);    //draw ball
+  void Dragged(int x, int y){
+    posChange = new PVector(x,y);          //set position change vector based on mouse x and y passed beforehand
+    ball.dragged(posChange);               //call ball dragging function in ball object
   }
   
-  void ballUpdate(){
-    if (shot){                //check if the ball has been shot, then update speed and position
-    pos.add(speed);
-    speed.add(acceleration);
-    }
-    if (pos.y >=screenY && shot){         // check if the ball is above bottom of the screen
-     speed = new PVector(0,0);//otherwise reset the ball to the catapult
-     pos = start.copy();
-     shot = false;
-    }    
+  void Released(){
+    PVector speedSet = new PVector((sPos.x-posChange.x)/7, (sPos.y-posChange.y)/7);  //set speed using
+    ball.ballLaunch(speedSet);             //the starting position of the ball
+    
   }
-  
-  void ballLaunch(PVector setSpeed){
-    speed = setSpeed.copy();          //set speed of ball
-    shot = true;                      //ball has been shot
-  }
-  void dragged(PVector drag){
-   pos = drag.copy();                 //update ball position according to the mouse coordinates
-  }
-  PVector callPos(){
-    return(pos);                      //return ball position
-  }
-  boolean callShot(){
-    return(shot);                     //return if the ball has been shot or not
-  }
-  
 }
