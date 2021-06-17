@@ -16,6 +16,8 @@ ParticleSystem [] particlesystem;
 int systemCount;
 int systemAmount;
 
+Background background;
+
 void setup() {
   size(1300, 750);
   start = new PVector(150, 4*height/5); // giving values for the starting position 
@@ -26,6 +28,7 @@ void setup() {
   catapult = new Catapult(start, ball);
 
   grass = new MassDamper [amount];
+  background = new Background(width, height);
 
   for (int i = 0; i<amount; i++) {
     grass[i] = new MassDamper((random(0, width)), height);
@@ -42,7 +45,7 @@ void setup() {
 
 void draw() {           // displaying background, ball and catapult
   background(50, 120, 78);
-
+  background.Display();
   ball.ballUpdate(catapult.position());
   ball.ballDisplay(); 
   wall.update();
@@ -52,20 +55,20 @@ void draw() {           // displaying background, ball and catapult
     grass[i].render();
     grass[i].update();
   }
-  
+
   firework.update();        //firework update and render
   firework.render();
   if (firework.explosion()) {  //checks if firework has exploded, starts explosion
-    particlesystem[systemCount].begin(firework.position(),firework.size());    
+    // particlesystem[systemCount].begin(firework.position(),firework.size());    
     firework = new Firework(width, height);  //new firework 
     systemCount++;                           //variable increases for object array
-    if (systemCount>=systemAmount-1){        //variable resets
-     systemCount = 0; 
+    if (systemCount>=systemAmount-1) {        //variable resets
+      systemCount = 0;
     }
   }
-  for(int i=0;i<systemAmount;i++){  //for loop for updating and rendering object array
-  particlesystem[i].update();
-  particlesystem[i].render();
+  for (int i=0; i<systemAmount; i++) {  //for loop for updating and rendering object array
+    particlesystem[i].update();
+    particlesystem[i].render();
   }
 }
 
@@ -85,7 +88,9 @@ void mouseReleased() {
   }
 }
 
-void keyPressed(){
-  catapult.action(key);
-  if (key == 'b'){
-}}
+void keyPressed() {
+  char pressedKey = key;
+  catapult.action(pressedKey);
+ background.move(pressedKey);
+  
+}

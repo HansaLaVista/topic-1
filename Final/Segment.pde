@@ -19,13 +19,14 @@ class Segment {
     velocity2 = velocity - otherVelo;
     angle = angle + velocity2;
     tempforce = velocity2*damper + angle/spring;
+   //  println(tempforce);
   }
 
   void render() {
     fill(0, 255, 0);
     noStroke();
     rotate(angle);    
-    rect(1, 1, 1, -lengt);
+    rect(0, 0, 4, -lengt);
     translate(0, -lengt);
   }
 }
