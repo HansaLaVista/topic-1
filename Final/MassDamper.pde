@@ -1,12 +1,11 @@
 class MassDamper {
   Segment [] segments;
-  flower flower;
-  int amount = 12;
+
+  int amount = 10;
   PVector startpos;
   MassDamper(float widt, float heigt) {
     startpos = new PVector(widt/2, heigt/4*3);
     segments = new Segment [amount];
-    flower = new flower();
     
     for (int i = 0; i <amount; i++) {
       segments[i] = new Segment();
@@ -28,7 +27,7 @@ class MassDamper {
     for (int i = 0; i<segments.length; i++) {
       segments[i].render();
     }
-    flower.RenderFlower(); // top flower part
+
     popMatrix();
   }
 }

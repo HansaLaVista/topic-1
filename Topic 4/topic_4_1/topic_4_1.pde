@@ -22,6 +22,7 @@ void draw() {
   background(40, 1, 55);    //background
   firework.update();        //firework update and render
   firework.render();
+  
   if (firework.explosion()) {  //checks if firework has exploded, starts explosion
     particlesystem[systemCount].begin(firework.position(),firework.size());    
     firework = new Firework(width, height);  //new firework 

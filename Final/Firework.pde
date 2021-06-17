@@ -7,7 +7,7 @@ class Firework {
   float angle;
 
   Firework(int xSize, int ySize) {  //constructor
-    pos = new PVector(random(100, xSize), -50);    //assign semi random position
+    pos = new PVector(random(100, xSize-100), -50);    //assign semi random position
     speed = new PVector(random(0, 4)-2, random(6, 2));  //assign speed
     size = random(1, 3)/3;    //assign random size
     explodeTime = ySize*random(.1,.8);  //assign random explosion moment for each firework

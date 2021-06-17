@@ -12,7 +12,7 @@ Flock flock;
 Rock obstacle; // rock that flock should avoid
 
 void setup() {
-  size(600,300);
+  size(600,300,FX2D);
   obstacle = new Rock(width/2,height/2); // position of the rock
   flock = new Flock(obstacle);
   // Add an initial set of boids into the system
