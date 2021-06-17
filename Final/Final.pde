@@ -43,7 +43,7 @@ void setup() {
 void draw() {           // displaying background, ball and catapult
   background(50, 120, 78);
 
-  ball.ballUpdate();
+  ball.ballUpdate(catapult.position());
   ball.ballDisplay(); 
   wall.update();
   wall.display(); 
@@ -84,3 +84,8 @@ void mouseReleased() {
     dragging = false; // user is not dragging so the ball can be released
   }
 }
+
+void keyPressed(){
+  catapult.action(key);
+  if (key == 'b'){
+}}

@@ -5,11 +5,14 @@ PVector sPos;                              //initiate starting position vector a
 PVector posChange;                         //change vector
   Catapult(PVector Pos, Ball ball) {
     this.ball = ball;                      //set ball to the same ball as in the main class
-    sPos = Pos;                            //set starting position           
+    sPos = Pos.copy();                            //set starting position           
+  }
+  void Update() {
+    //println(sPos);
   }
 
-
-  void Display() {                         
+  void Display() {     
+    stroke(1);
     fill(139,69,19);                       //set catapult colour
     beginShape();                          //start vertex based catapult shape
     vertex(sPos.x,sPos.y+50);
@@ -32,7 +35,19 @@ PVector posChange;                         //change vector
   
   void Released(){
     PVector speedSet = new PVector((sPos.x-posChange.x)/7, (sPos.y-posChange.y)/7);  //set speed using
-    ball.ballLaunch(speedSet);             //the starting position of the ball
+    ball.ballLaunch(speedSet);             //the starting position of the ball    
+  }
+  void action(char b){
+    if (b == 'a'){
+      sPos.x-=3;
+    }
+    if (b == 'd'){
+      sPos.x+=3;
+    }
     
+  }
+  
+  PVector position(){
+   return sPos.copy(); 
   }
 }

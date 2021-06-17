@@ -19,7 +19,6 @@ class Segment {
     velocity2 = velocity - otherVelo;
     angle = angle + velocity2;
     tempforce = velocity2*damper + angle/spring;
-    println(tempforce);
   }
 
   void render() {
