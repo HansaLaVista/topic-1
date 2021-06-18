@@ -53,7 +53,6 @@ void draw() {           // displaying background, ball and catapult
     grass[i].render();
     grass[i].update();
   }
-
   firework.update();        //firework update and render
   firework.render();
   firework.collide();

@@ -2,30 +2,35 @@ class Catapult {
 
   Ball ball;                                 //create object within class
   PVector sPos;  //initiate starting position vector and position
-  float diam;
+  float diam, rectSize, angle;
   PVector posChange;                         //change vector
-  boolean moveLeft, moveRight;
+  boolean moveLeft, moveRight, tiltLeft, tiltRight;
   Catapult(PVector Pos, Ball ball) {
     this.ball = ball;                      //set ball to the same ball as in the main class
     sPos = Pos.copy();                    //set starting position
     diam = 50;
+    rectSize = 15;
   }
   void Update() {
-    //println(sPos);
     action();
   }
 
- void Display() {     
+  void Display() {     
     stroke(1);   
-     fill(0,50,210);
+    pushMatrix();
+    translate(sPos.x,sPos.y-60+rectSize*3.5);
+    rotate(angle);
+    rectMode(CENTER);
+    rect(0, -rectSize*3.5, rectSize, rectSize*7);
+    popMatrix();
+    fill(0, 50, 210);
     beginShape();
     ellipse(sPos.x, sPos.y, diam*4, diam);
-    vertex(sPos.x-40,sPos.y-20);
-    vertex(sPos.x-40,sPos.y-50);
-     vertex(sPos.x+40,sPos.y-40);
-    vertex(sPos.x+40,sPos.y-20);
+    vertex(sPos.x-40, sPos.y-20);
+    vertex(sPos.x-40, sPos.y-50);
+    vertex(sPos.x+40, sPos.y-40);
+    vertex(sPos.x+40, sPos.y-20);
     endShape();
-    
   }
 
   void Dragged(int x, int y) {
@@ -37,25 +42,37 @@ class Catapult {
     PVector speedSet = new PVector((sPos.x-posChange.x)/7, (sPos.y-posChange.y)/7);  //set speed using
     ball.ballLaunch(speedSet);             //the starting position of the ball
   }
-  
-  void actionCheck(char b){
-    if (b == 'a'){
-     moveLeft = true; 
+
+  void actionCheck(char b) {
+    if (b == 'a') {
+      moveLeft = true;
     }
-    if ( b== 'd'){
-     moveRight = true; 
+    if ( b== 'd') {
+      moveRight = true;
+    }
+    if ( b== 'j') {
+      tiltLeft = true;
+    }
+    if ( b== 'l') {
+      tiltRight = true;
     }
   }
-  
-  void haltCheck(char b){
-    if (b == 'a'){
-     moveLeft = false; 
+
+  void haltCheck(char b) {
+    if (b == 'a') {
+      moveLeft = false;
     }
-    if ( b== 'd'){
-     moveRight = false; 
-    }    
+    if ( b== 'd') {
+      moveRight = false;
+    }
+    if ( b== 'j') {
+      tiltLeft = false;
+    }
+    if ( b== 'l') {
+      tiltRight = false;
+    }
   }
-  
+
   void action() {
 
     if (moveLeft) {
@@ -63,6 +80,19 @@ class Catapult {
     }
     if (moveRight) {
       sPos.x+=3;
+    }
+    if (tiltLeft) {
+      angle-=.03;
+      if(angle>1){
+       tiltLeft= false; 
+      }
+      println(angle);
+    }
+    if (tiltRight) {
+      angle+=0.03;
+      if(angle<-1){
+       tiltRight=false; 
+      }
     }
   }
 
