@@ -8,7 +8,7 @@ Catapult catapult;   // calling class Catapult
 boolean dragging = false; // boolean for checking dragging
 
 MassDamper [] grass ;
-int amount = 10;
+int amount = 50;
 
 Firework firework;                //initiate objects and variables
 ParticleSystem [] particlesystem;

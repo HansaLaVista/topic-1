@@ -4,7 +4,7 @@ class MassDamper {
   int amount = 5;
   PVector startpos;
   MassDamper(float widt, float heigt) {
-    startpos = new PVector(widt, heigt/4*3);
+    startpos = new PVector(widt, heigt);
     segments = new Segment [amount];
     
     for (int i = 0; i <amount; i++) {
@@ -19,8 +19,8 @@ class MassDamper {
       segments[i].update(segments[i-1].velocity, segments[i+1].tempforce);
     }
     segments[0].update(0, segments[1].tempforce);
-    if (abs(segments[segments.length-1].tempforce) <= pow(10,-6)){
-      segments[segments.length-1].tempforce += (random(0,8)-4)/10;
+    if (abs(segments[segments.length-1].tempforce) <= pow(10,-5)){
+      segments[segments.length-1].tempforce += (randomGaussian()*.6 - .5);
     }
   }
 
