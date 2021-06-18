@@ -1,7 +1,7 @@
 class MassDamper {
   Segment [] segments;
 
-  int amount = 10;
+  int amount = 5;
   PVector startpos;
   MassDamper(float widt, float heigt) {
     startpos = new PVector(widt/2, heigt/4*3);
@@ -30,4 +30,9 @@ class MassDamper {
 
     popMatrix();
   }
+  void force(float i){
+    //if (segments[segments.length-2].tempforce >0){
+    segments[segments.length-2].tempforce += i;}
+    //else {segments[segments.length-2].tempforce += -i;}
+  //}
 }

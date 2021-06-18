@@ -4,7 +4,7 @@ class Segment {
   float spring, damper, mass;
   Segment() {
     lengt = 15;
-    tempforce = 0.2;
+    tempforce = (random(0,6)-3)/10;
     velocity = 0;
     velocity2 = 0;
     angle = 0;
