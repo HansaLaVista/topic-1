@@ -5,7 +5,6 @@
 PVector start;       // starting positon vector
 Ball ball;          // calling class Ball
 Catapult catapult;   // calling class Catapult
-Wall wall;
 boolean dragging = false; // boolean for checking dragging
 
 MassDamper [] grass ;
@@ -24,7 +23,6 @@ void setup() {
   background(50, 120, 78);
 
   ball = new Ball(start, width, height);  // ball and catapult have same starting position + creating new object ball and catapult
-  wall = new Wall(width, height, ball);  
   catapult = new Catapult(start, ball);
 
   grass = new MassDamper [amount];
@@ -48,8 +46,6 @@ void draw() {           // displaying background, ball and catapult
   background.Display();
   ball.ballUpdate(catapult.position());
   ball.ballDisplay(); 
-  wall.update();
-  wall.display(); 
   catapult.Display();
   for (int i = 0; i <amount; i++) {
     grass[i].render();
@@ -58,6 +54,7 @@ void draw() {           // displaying background, ball and catapult
 
   firework.update();        //firework update and render
   firework.render();
+  firework.collide();
   if (firework.explosion()) {  //checks if firework has exploded, starts explosion
     // particlesystem[systemCount].begin(firework.position(),firework.size());    
     firework = new Firework(width, height, ball);  //new firework 

@@ -6,6 +6,7 @@ class Ball {
   boolean shot= false;
   boolean dragging = false;
   int screenX, screenY;
+  
   Ball(PVector start, int widt, int heigt) {
     screenX = widt;
     screenY = heigt;
