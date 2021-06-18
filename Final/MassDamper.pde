@@ -1,10 +1,10 @@
 class MassDamper {
   Segment [] segments;
 
-  int amount = 5;
+  int amount = 25;
   PVector startpos;
   MassDamper(float widt, float heigt) {
-    startpos = new PVector(widt, heigt);
+    startpos = new PVector(widt, 0);
     segments = new Segment [amount];
     
     for (int i = 0; i <amount; i++) {

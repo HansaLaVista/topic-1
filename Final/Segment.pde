@@ -3,13 +3,13 @@ class Segment {
   float force, velocity, velocity2, angle;
   float spring, damper, mass;
   Segment() {
-    lengt = 15;
-    tempforce = (random(0,6)-3)/10;
+    lengt = -15;
+    tempforce = (random(0,6)-3)/100;
     velocity = 0;
     velocity2 = 0;
     angle = 0;
-    spring = 10;
-    damper = 1;
+    spring = 1;
+    damper = 2;
     mass = 10;
   }
 
