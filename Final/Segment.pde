@@ -1,13 +1,14 @@
 
 class Segment {
-  float lengt, tempforce, thickness;
-  float force, velocity, velocity2, angle;
-  float spring, damper, mass;
-  color hairColor;
-  Segment(color colour) {
-    lengt = -15;
+  float lengt, thickness; // variables for visual aspects 
+  float force,tempForce, velocity, velocity2, angle; // MDS physics variables
+  float spring, damper, mass; // MDS physics variables
+  color hairColor; 
+  
+  Segment(color colour) { // colour variable for unifrom color throughout whole segment
+    lengt = -15; // initializing variables
     thickness = 6;
-    tempforce = (randomGaussian()*.2 );
+    tempForce = (randomGaussian()*.2 );
     velocity = 0;
     velocity2 = 0;
     angle = 0;
@@ -17,18 +18,19 @@ class Segment {
     hairColor = colour;
   }
 
-  void update(float otherVelo, float otherForce) {
-    tempforce = -tempforce + otherForce; 
-    velocity = velocity + tempforce/mass;
+  void update(float otherVelo, float otherForce) { 
+    tempForce = -tempForce + otherForce; // DMS physics equations
+    velocity = velocity + tempForce/mass;
     velocity2 = velocity - otherVelo;
     angle = angle + velocity2;
-    tempforce = velocity2*damper + angle/spring;
-    if(tempforce>.5){
-      tempforce = .5;
+    tempForce = velocity2*damper + angle/spring;
+    
+    if(tempForce>.5){ // setting a limit for the force
+      tempForce = .5;
     }
   }
 
-  void render() {
+  void render() { // display of the segment
     fill(hairColor);
     noStroke();
     rotate(angle);    
