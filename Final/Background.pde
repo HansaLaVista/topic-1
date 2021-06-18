@@ -13,14 +13,15 @@ int xSize,ySize;
   }
   
  void Display(){
+   noStroke();
   fill(0, 255, 0); 
   beginShape();             //start shape for background terrain
   xoff = start;  
 
 
   for (x=0; x<=xSize; x++) {    //set coordinates for the entire screen
-    vertex(x, ySize/2+(noise(xoff)*75));  //use noise function to create terrain visual
-    xoff += xincrement;
+    vertex(x, ySize/3+(noise(xoff)*200));  //use noise function to create terrain visual
+    xoff += xincrement; 
   } 
 
   vertex(xSize, ySize);          //bottom parts of background terrain shape

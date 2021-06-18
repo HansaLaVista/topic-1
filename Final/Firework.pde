@@ -24,7 +24,7 @@ class Firework {
     translate(pos.x, pos.y);  //translate and rotate
     rotate(angle);
     //   rectMode(CENTER);
-    ellipse(0, size, size, size);    //firework shape
+    ellipse(0, 0, size, size);    //firework shape
     //rect(0, 30*size, 20*size, 40*size);
     // triangle(0, 0, 0-10*size, 0+10*size, 0+10*size, 0+10*size);
     popMatrix();
@@ -40,10 +40,8 @@ class Firework {
   }
 
   void collide( ) {
-    float distX = ball.pos.x- pos.x  ;
-    float distY = ball.pos.y - pos.y  ;
-    float posDiff = sqrt(distX*distX + distY*distY);
-    float collideDist = ball.sizeBall/1.5 + size/1.5;
+    float posDiff = ball.pos.dist(pos);
+    float collideDist = ball.sizeBall/2 + size/2;
 
     if (posDiff < collideDist ) {
       particlesystem[systemCount].begin(firework.position(), firework.size()); 
