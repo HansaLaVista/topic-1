@@ -1,3 +1,4 @@
+
 class MassDamper {
   Segment [] segments;
   color hairColor;

@@ -1,3 +1,4 @@
+
 class Firework {
   boolean boom;      //initiate variables
   PVector pos;
@@ -13,18 +14,28 @@ class Firework {
     speed = new PVector(random(0, 4)-2, random(6, 2));  //assign speed
     size = 100*random(1, 3)/3;    //assign random size
     explodeTime = ySize*2;  //assign random explosion moment for each firework
-    angle = asin(speed.x/sqrt(pow(speed.x, 2)+pow(speed.y, 2)));  //set angle of firework according to speed
+    angle = -asin(speed.x/sqrt(pow(speed.x, 2)+pow(speed.y, 2)));  //set angle of firework according to speed
     boom = false;  //set boolean false
   }
 
   void render() {
-    fill(240, 50, 4);  //firework color
+    fill(192,192,192);  //firework color
     stroke(1);
     pushMatrix();
     translate(pos.x, pos.y);  //translate and rotate
     rotate(angle);
-    //   rectMode(CENTER);
-    ellipse(0, 0, size, size);    //firework shape
+    beginShape();            // make shape
+    vertex(-size/4, -size/2);
+    vertex(size/4, -size/2);
+    vertex(size/2,-size/4);
+    vertex(size/2,size/4);
+    vertex(size/4,size/2);
+    vertex(-size/4,size/2);
+    vertex(-size/2,size/4);
+    vertex(-size/2,-size/4);
+     vertex(-size/4, -size/2);
+    endShape();
+    
     //rect(0, 30*size, 20*size, 40*size);
     // triangle(0, 0, 0-10*size, 0+10*size, 0+10*size, 0+10*size);
     popMatrix();

@@ -1,3 +1,4 @@
+
 class Segment {
   float lengt, tempforce, thickness;
   float force, velocity, velocity2, angle;
