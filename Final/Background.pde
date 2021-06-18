@@ -4,6 +4,7 @@ class Background{
 float xoff, start=0.0;
 float xincrement=0.01;
 int xSize,ySize;
+boolean moveLeft, moveRight;
   
   
   Background(int wit, int heit){
@@ -17,6 +18,7 @@ int xSize,ySize;
   fill(0, 255, 0); 
   beginShape();             //start shape for background terrain
   xoff = start;  
+  move();
 
 
   for (x=0; x<=xSize; x++) {    //set coordinates for the entire screen
@@ -30,18 +32,33 @@ int xSize,ySize;
     
  }
     
-void move(char b){
-  
+void moveCheck(char b){  
   if( b == 'a'){
-    
+    moveRight = true;
+    //start += 2*xincrement; 
+  }  
+   if( b == 'd'){
+    moveLeft = true;
+    //start -= 2*xincrement;
+  }  
+}
+
+void haltCheck(char b){
+  if (b == 'a'){
+    moveRight = false;
+  }  
+  if (b == 'd'){
+    moveLeft = false;
+  }
+}
+
+void move(){
+  if (moveRight){
     start += 2*xincrement; 
   }
-  
-   if( b == 'd'){
-    
-    start -= 2*xincrement;
+  if (moveLeft){
+   start -= 2*xincrement;  
   }
-  
 }
   
   

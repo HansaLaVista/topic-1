@@ -88,10 +88,19 @@ void mouseReleased() {
 
 void keyPressed() {
   char pressedKey = key;
-  catapult.action(pressedKey);
- background.move(pressedKey);
+  //catapult.actionCheck(pressedKey);
+ background.moveCheck(pressedKey);
  ball.shoot(pressedKey);
- for(int i=0; i<amount; i++){
- grass[i].move(pressedKey); 
- }
+ //for(int i=0; i<amount; i++){
+ //grass[i].moveCheck(pressedKey); 
+ //}
+}
+
+void keyReleased() {
+  char releasedKey = key;
+  //catapult.haltCheck(releasedKey);
+  background.haltCheck(releasedKey);
+ //for(int i=0; i<amount; i++){
+ //grass[i].haltCheck(releasedKey); 
+ //}  
 }
