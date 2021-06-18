@@ -1,16 +1,19 @@
 class Segment {
-  float lengt, tempforce;
+  float lengt, tempforce, thickness;
   float force, velocity, velocity2, angle;
   float spring, damper, mass;
-  Segment() {
+  color hairColor;
+  Segment(color colour) {
     lengt = -15;
-    tempforce = (random(0,6)-3)/100;
+    thickness = 6;
+    tempforce = (randomGaussian()*.2 );
     velocity = 0;
     velocity2 = 0;
     angle = 0;
     spring = 1;
-    damper = 2;
+    damper = 1;
     mass = 10;
+    hairColor = colour;
   }
 
   void update(float otherVelo, float otherForce) {
@@ -23,10 +26,10 @@ class Segment {
   }
 
   void render() {
-    fill(0, 0, 200);
+    fill(hairColor);
     noStroke();
     rotate(angle);    
-    rect(0, 0, 4, -lengt);
-    translate(0, -lengt);
+    rect(0, 0, thickness, -lengt);
+    translate(0, -lengt-1);
   }
 }

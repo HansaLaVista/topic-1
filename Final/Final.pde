@@ -8,7 +8,7 @@ Catapult catapult;   // calling class Catapult
 boolean dragging = false; // boolean for checking dragging
 
 MassDamper [] grass ;
-int amount = 50;
+int amount = 100;
 
 Firework firework;                //initiate objects and variables
 ParticleSystem [] particlesystem;
@@ -42,7 +42,7 @@ void setup() {
 }
 
 void draw() {           // displaying background, ball and catapult
-  background(50, 120, 78);
+  background(10, 10, 44);
   background.Display();
   ball.ballUpdate(catapult.position());
   ball.ballDisplay(); 

@@ -1,14 +1,15 @@
 class MassDamper {
   Segment [] segments;
+  color hairColor;
 
-  int amount = 25;
+  int amount = int(randomGaussian()*2.5) +20;
   PVector startpos;
   MassDamper(float widt, float heigt) {
-    startpos = new PVector(widt, 0);
+    startpos = new PVector(widt, 0*heigt);
     segments = new Segment [amount];
-    
+      hairColor = color(0,0,int(randomGaussian()*50+205));    
     for (int i = 0; i <amount; i++) {
-      segments[i] = new Segment();
+      segments[i] = new Segment(hairColor);
     }
   }
 
@@ -20,7 +21,7 @@ class MassDamper {
     }
     segments[0].update(0, segments[1].tempforce);
     if (abs(segments[segments.length-1].tempforce) <= pow(10,-5)){
-      segments[segments.length-1].tempforce += (randomGaussian()*.6 - .5);
+      segments[segments.length-1].tempforce += (randomGaussian()*.2 - .5);
     }
   }
 
