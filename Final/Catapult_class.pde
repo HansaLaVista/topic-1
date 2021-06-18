@@ -4,6 +4,7 @@ class Catapult {
   PVector sPos;  //initiate starting position vector and position
   float diam;
   PVector posChange;                         //change vector
+  boolean moveLeft, moveRight;
   Catapult(PVector Pos, Ball ball) {
     this.ball = ball;                      //set ball to the same ball as in the main class
     sPos = Pos.copy();                    //set starting position
@@ -11,24 +12,11 @@ class Catapult {
   }
   void Update() {
     //println(sPos);
+    action();
   }
 
  void Display() {     
-    stroke(1);
-   // fill(139, 69, 19);                       //set catapult colour
- //   beginShape();                          //start vertex based catapult shape
- //   vertex(sPos.x, sPos.y+50);
- //   vertex(sPos.x+50, sPos.y-10);
-   // vertex(sPos.x+60, sPos.y-10);
-   // vertex(sPos.x+5, sPos.y+55);
-  //  vertex(sPos.x+5, sPos.y+90);
-   // vertex(sPos.x-5, sPos.y+90);
-   // vertex(sPos.x-5, sPos.y+55);
-  //  vertex(sPos.x-60, sPos.y-10);
-  //  vertex(sPos.x-50, sPos.y-10);
-  //  vertex(sPos.x, sPos.y+50);
-   // endShape(); 
-   
+    stroke(1);   
      fill(0,50,210);
     beginShape();
     ellipse(sPos.x, sPos.y, diam*4, diam);
@@ -49,11 +37,31 @@ class Catapult {
     PVector speedSet = new PVector((sPos.x-posChange.x)/7, (sPos.y-posChange.y)/7);  //set speed using
     ball.ballLaunch(speedSet);             //the starting position of the ball
   }
-  void action(char b) {
-    if (b == 'a') {
+  
+  void actionCheck(char b){
+    if (b == 'a'){
+     moveLeft = true; 
+    }
+    if ( b== 'd'){
+     moveRight = true; 
+    }
+  }
+  
+  void haltCheck(char b){
+    if (b == 'a'){
+     moveLeft = false; 
+    }
+    if ( b== 'd'){
+     moveRight = false; 
+    }    
+  }
+  
+  void action() {
+
+    if (moveLeft) {
       sPos.x-=3;
     }
-    if (b == 'd') {
+    if (moveRight) {
       sPos.x+=3;
     }
   }

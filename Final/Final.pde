@@ -48,6 +48,7 @@ void draw() {           // displaying background, ball and catapult
   ball.ballUpdate(catapult.position());
   ball.ballDisplay(); 
   catapult.Display();
+  catapult.Update();
   for (int i = 0; i <amount; i++) {
     grass[i].render();
     grass[i].update();
@@ -88,17 +89,17 @@ void mouseReleased() {
 
 void keyPressed() {
   char pressedKey = key;
-  //catapult.actionCheck(pressedKey);
+  catapult.actionCheck(pressedKey);
  background.moveCheck(pressedKey);
  ball.shoot(pressedKey);
- //for(int i=0; i<amount; i++){
- //grass[i].moveCheck(pressedKey); 
- //}
+ for(int i=0; i<amount; i++){
+ grass[i].move(pressedKey); 
+ }
 }
 
 void keyReleased() {
   char releasedKey = key;
-  //catapult.haltCheck(releasedKey);
+  catapult.haltCheck(releasedKey);
   background.haltCheck(releasedKey);
  //for(int i=0; i<amount; i++){
  //grass[i].haltCheck(releasedKey); 
