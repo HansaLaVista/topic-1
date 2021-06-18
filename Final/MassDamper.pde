@@ -35,9 +35,12 @@ class MassDamper {
 
     popMatrix();
   }
-  void force(float i){
-    //if (segments[segments.length-2].tempforce >0){
-    segments[segments.length-1].tempforce += i;}
-    //else {segments[segments.length-2].tempforce += -i;}
-  //}
+  void move(char a){
+    if (a == 'a'){
+      segments[segments.length-1].tempforce += -.008;
+    }
+    if (a == 'd'){
+      segments[segments.length-1].tempforce += .008;
+    }
+  }
 }

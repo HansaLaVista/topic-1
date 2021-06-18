@@ -90,10 +90,8 @@ void keyPressed() {
   char pressedKey = key;
   catapult.action(pressedKey);
  background.move(pressedKey);
- if (pressedKey == ' '){
-  for(int i = 0; i<amount;i++){
-    grass[i].force((random(0,8)-4)/10);
-  }
+ ball.shoot(pressedKey);
+ for(int i=0; i<amount; i++){
+ grass[i].move(pressedKey); 
  }
-  
 }

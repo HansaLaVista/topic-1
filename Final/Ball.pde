@@ -2,7 +2,8 @@ class Ball {
   int sizeBall = 25;                              //initialise variables
   PVector pos;
   PVector speed;
-  PVector acceleration = new PVector(-0.008, 0.2);  //set set gravity and 'wind resistance'
+  PVector acceleration = new PVector(0, 0.2);  //set set gravity and 'wind resistance'
+  float windRes =.997;
   boolean shot= false;
   boolean dragging = false;
   int screenX, screenY;
@@ -23,6 +24,7 @@ class Ball {
   void ballUpdate(PVector catPos) {
     if (shot) {                //check if the ball has been shot, then update speed and position
       pos.add(speed);
+      speed.x *= windRes;
       speed.add(acceleration);
       if (pos.y >=screenY) {         // check if the ball is above bottom of the screen
         reset();
@@ -42,7 +44,21 @@ class Ball {
     pos = drag.copy();      //update ball position according to the mouse coordinates
     dragging = true;  
 
-}
+  }
+  void reset(){
+        speed = new PVector(0, 0);//otherwise reset the ball to the catapult
+        pos = start.copy();
+        shot = false;
+        dragging = false;
+  }
+  void shoot(char i){
+   if (i == ' '){
+     speed = new PVector(0,-15);
+     shot = true;                      //ball has been shot
+     dragging = false;
+   }
+  }
+
   PVector callPos() {
     return(pos);                      //return ball position
   }
@@ -50,10 +66,5 @@ class Ball {
     return(shot);                     //return if the ball has been shot or not
   }
   
-  void reset(){
-        speed = new PVector(0, 0);//otherwise reset the ball to the catapult
-        pos = start.copy();
-        shot = false;
-        dragging = false;
-  }
+
 }
