@@ -25,9 +25,7 @@ class Ball {
       pos.add(speed);
       speed.add(acceleration);
       if (pos.y >=screenY) {         // check if the ball is above bottom of the screen
-        speed = new PVector(0, 0);//otherwise reset the ball to the catapult
-        pos = start.copy();
-        shot = false;
+        reset();
       }
     } else if (!dragging) {
       //println(catPos);
@@ -50,5 +48,12 @@ class Ball {
   }
   boolean callShot() {
     return(shot);                     //return if the ball has been shot or not
+  }
+  
+  void reset(){
+        speed = new PVector(0, 0);//otherwise reset the ball to the catapult
+        pos = start.copy();
+        shot = false;
+        dragging = false;
   }
 }

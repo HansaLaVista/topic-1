@@ -40,14 +40,15 @@ class Firework {
   }
 
   void collide( ) {
-    float distX = ball.pos.x+ball.speed.x - pos.x + speed.x ;
-    float distY = ball.pos.y+ball.speed.y - pos.y + speed.y ;
+    float distX = ball.pos.x- pos.x  ;
+    float distY = ball.pos.y - pos.y  ;
     float posDiff = sqrt(distX*distX + distY*distY);
-    float collideDist = ball.sizeBall + size;
+    float collideDist = ball.sizeBall/1.5 + size/1.5;
 
     if (posDiff < collideDist ) {
       particlesystem[systemCount].begin(firework.position(), firework.size()); 
       boom = true;
+      ball.reset();
     }
   }
 
