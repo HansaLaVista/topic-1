@@ -38,10 +38,6 @@ class Catapult {
     ball.dragged(posChange);               //call ball dragging function in ball object
   }
 
-  void Released() {
-    PVector speedSet = new PVector((sPos.x-posChange.x)/7, (sPos.y-posChange.y)/7);  //set speed using
-    ball.ballLaunch(speedSet);             //the starting position of the ball
-  }
 
   void actionCheck(char b) {
     if (b == 'a') {
@@ -71,6 +67,10 @@ class Catapult {
     if ( b== 'l') {
       tiltRight = false;
     }
+    if ( b=='n') {
+      PVector speedSet = new PVector((sin(angle)*15), (-cos(angle)*15));
+      ball.ballLaunch(speedSet);
+    }
   }
 
   void action() {
@@ -86,13 +86,15 @@ class Catapult {
     if (tiltRight) {
       angle+=0.03;
     }
-    if (angle>1) {
+    if (angle>1.3) {
       stopRight=true;
+      tiltRight=false;
     } else {
       stopRight=false;
     }
-    if (angle<-1) {
+    if (angle<-1.3) {
       stopLeft= true;
+      tiltLeft= false;
     } else {
       stopLeft=false;
     }

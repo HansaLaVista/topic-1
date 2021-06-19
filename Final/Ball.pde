@@ -51,13 +51,6 @@ class Ball {
         shot = false;
         dragging = false;
   }
-  void shoot(char i){
-   if (i == ' '){
-     speed = new PVector(0,-15);
-     shot = true;                      //ball has been shot
-     dragging = false;
-   }
-  }
 
   PVector callPos() {
     return(pos);                      //return ball position

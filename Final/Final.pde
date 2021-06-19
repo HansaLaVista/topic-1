@@ -81,7 +81,6 @@ void mouseDragged() {
 
 void mouseReleased() { 
   if (dragging) {
-    catapult.Released(); // catapult will release ball
     dragging = false; // user is not dragging so the ball can be released
   }
 }
@@ -90,7 +89,6 @@ void keyPressed() {
   char pressedKey = key;
   catapult.actionCheck(pressedKey);
  background.moveCheck(pressedKey);
- ball.shoot(pressedKey);
  for(int i=0; i<amount; i++){
  grass[i].move(pressedKey); 
  }
