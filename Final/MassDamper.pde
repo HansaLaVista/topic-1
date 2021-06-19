@@ -4,6 +4,7 @@ class MassDamper {
   color hairColor;  
   int amount = int(randomGaussian()*2.5) +20; // random amount of segments per tentacle
   PVector startpos; 
+  boolean swingLeft, swingRight;
   
   MassDamper(float widt, float heigt) {
     startpos = new PVector(widt, 0*heigt);
@@ -26,6 +27,7 @@ class MassDamper {
     if (abs(segments[segments.length-1].tempForce) <= pow(10,-5)){ // function of force (wind) on the tentacles.
       segments[segments.length-1].tempForce += (randomGaussian()*.2 - .5);
     }
+    move();
   }
 
   void render() {
@@ -37,12 +39,28 @@ class MassDamper {
 
     popMatrix();
   }
-  void move(char a){
-    if (a == 'a'){
-      segments[segments.length-1].tempForce += -.008;
-    }
-    if (a == 'd'){
+  void move(){
+    if (swingLeft){
       segments[segments.length-1].tempForce += .008;
     }
+    if (swingRight){
+      segments[segments.length-1].tempForce += -.008;
+    }
+  }
+  void moveCheck(char a){
+    if (a == 'a'){
+      swingRight = true;
+    }
+    if (a == 'd'){
+      swingLeft = true;
+    }
+  }
+  void haltCheck(char a){
+    if (a == 'a'){
+      swingRight = false;
+    }
+    if (a == 'd'){
+      swingLeft = false;
+    }    
   }
 }

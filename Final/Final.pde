@@ -90,7 +90,7 @@ void keyPressed() {
   catapult.actionCheck(pressedKey);
  background.moveCheck(pressedKey);
  for(int i=0; i<amount; i++){
- grass[i].move(pressedKey); 
+ grass[i].moveCheck(pressedKey); 
  }
 }
 
@@ -98,7 +98,7 @@ void keyReleased() {
   char releasedKey = key;
   catapult.haltCheck(releasedKey);
   background.haltCheck(releasedKey);
- //for(int i=0; i<amount; i++){
- //grass[i].haltCheck(releasedKey); 
- //}  
+ for(int i=0; i<amount; i++){
+ grass[i].haltCheck(releasedKey); 
+ }  
 }
