@@ -11,7 +11,7 @@ boolean dragging = false; // boolean for checking dragging
 MassDamper [] tentacles ;
 int amount = 100;
 
-Firework firework;                //initiate objects and variables
+Meteor meteor;                //initiate objects and variables
 ParticleSystem [] particlesystem;
 int systemCount;
 int systemAmount;
@@ -36,7 +36,7 @@ void setup() {
 
   systemCount = 0;                //give initial values to variables
   systemAmount = 4;
-  firework = new Firework(width, height, bullet);  //create object
+  meteor = new Meteor(width, height, bullet);  //create object
   particlesystem = new ParticleSystem[systemAmount];  //create object array
   for (int i = 0; i<systemAmount; i++) {               //create the objects within array
     particlesystem[i] = new ParticleSystem();
@@ -55,12 +55,12 @@ void draw() {           // displaying background, bullet and tank
     tentacles[i].render();
     tentacles[i].update();
   }
-  firework.update();        //firework update and render
-  firework.render();
-  firework.collide();
-  if (firework.explosion() || firework.meteorPos.y > 1.2*height) {  //checks if firework has exploded, starts explosion
-    menu.update(firework.explosion());
-    firework = new Firework(width, height, bullet);  //new firework 
+  meteor.update();        //meteor update and render
+  meteor.render();
+  meteor.collide();
+  if (meteor.explosion() || meteor.meteorPos.y > 1.2*height) {  //checks if meteor has exploded, starts explosion
+    menu.update(meteor.explosion());
+    meteor = new Meteor(width, height, bullet);  //new meteor 
     systemCount++;                           //variable increases for object array
     if (systemCount>=systemAmount-1) {        //variable resets
       systemCount = 0;
@@ -70,7 +70,7 @@ void draw() {           // displaying background, bullet and tank
     particlesystem[i].update();
     particlesystem[i].render();
   }
-  menu.display(firework.boom);
+  menu.display(meteor.boom);
 }
 
 void mouseDragged() {              
