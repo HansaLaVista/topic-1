@@ -26,11 +26,12 @@ class FiringSystem {
     }
   }
   
-  void begin(PVector pos, float fSize) { // initiates the system 
+  void begin(PVector pos, float fSize, float angle) { // initiates the system 
     started = true;                     // true for the explosion
+    
     sparks = new Spark [amount];
     for (int i = 0; i<amount; i++) {
-      sparks[i] = new Spark(pos, fSize);
+      sparks[i] = new Spark(pos, -fSize);
     }
   }
 }

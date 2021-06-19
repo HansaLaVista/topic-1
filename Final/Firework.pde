@@ -9,7 +9,7 @@ class Firework {
     this.ball = ball;
     meteorPos = new PVector(random(100, xSize-100), -50);      //assign random position 
     meteorSpeed = new PVector(random(0, 4)-2, random(6, 2));  //assign random speed
-    size = 100*random(1, 3)/3;                               //assign random size                      
+    size = randomGaussian()*20+50;                               //assign random size                      
     angle = -asin(meteorSpeed.x/sqrt(pow(meteorSpeed.x, 2)+pow(meteorSpeed.y, 2)));  //set angle of meteor according to speed
     boom = false;                                          //set explosion boolean false
   }
