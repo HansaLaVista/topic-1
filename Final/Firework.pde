@@ -44,7 +44,7 @@ class Firework {
     float posDiff = ball.pos.dist(meteorPos);      // getting the distance between the bullet and meteor
     float collideDist = ball.sizeBall/2 + size/2; //the distance betweent the radius/2 where the objects should collide
 
-    if (posDiff < collideDist ) {
+    if (posDiff < collideDist && ball.shot) {
       particlesystem[systemCount].begin(firework.position(), firework.size()); // generating the particles
       boom = true;     // explosion is true
       ball.reset();   // once explison happens, bullet goes back to initial position (at the tank)
