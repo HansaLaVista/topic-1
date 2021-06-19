@@ -21,6 +21,7 @@ class Catapult {
     translate(sPos.x, sPos.y-60+rectSize*3.5);
     rotate(angle);
     rectMode(CENTER);
+    fill(200,40,40);
     rect(0, -rectSize*3.5, rectSize, rectSize*7);
     popMatrix();
     fill(0, 50, 210);

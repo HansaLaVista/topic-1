@@ -42,7 +42,7 @@ class Firework {
 
   void collide( ) {                                 // collision detection between bullet and meteor
     float posDiff = ball.pos.dist(meteorPos);      // getting the distance between the bullet and meteor
-    float collideDist = ball.sizeBall/2 + size/2; //the distance betweent the radius/2 where the objects should collide
+    float collideDist = ball.sizeBullet/2 + size/2; //the distance betweent the radius/2 where the objects should collide
 
     if (posDiff < collideDist && ball.shot) {
       particlesystem[systemCount].begin(firework.position(), firework.size()); // generating the particles

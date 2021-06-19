@@ -1,5 +1,5 @@
 class Ball {
-  int sizeBall = 25;                              //initialise variables
+  int sizeBullet = 15;                              //initialise variables
   PVector pos;
   PVector speed;
   PVector acceleration = new PVector(0, 0.2);  //set set gravity and 'wind resistance'
@@ -7,8 +7,10 @@ class Ball {
   boolean shot= false;
   boolean dragging = false;
   int screenX, screenY;
+  float angle;
   
   Ball(PVector start, int widt, int heigt) {
+    angle = 0;
     screenX = widt;
     screenY = heigt;
     pos = start.copy();                              //copy vector for start position
@@ -17,8 +19,14 @@ class Ball {
 
   void ballDisplay() {
     stroke(1);
-    fill(255, 30, 30);                              //ball colour
-    ellipse(pos.x, pos.y, sizeBall, sizeBall);    //draw ball
+    fill(255, 215, 0);                              //ball colour
+    pushMatrix();
+    translate(pos.x,pos.y);
+    rotate(angle);
+    ellipse(0, -sizeBullet/2, sizeBullet, sizeBullet);    //draw ball
+    rectMode(CENTER);
+    rect(0,sizeBullet/2, sizeBullet, sizeBullet*2);
+    popMatrix();
   }
 
   void ballUpdate(PVector catPos) {
@@ -33,6 +41,7 @@ class Ball {
       //println(catPos);
      pos = catPos.copy();
     }
+    angle = -asin(-speed.y/speed.mag()) + .5 *PI;
   }
 
   void ballLaunch(PVector setSpeed) {
