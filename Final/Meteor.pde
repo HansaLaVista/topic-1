@@ -46,7 +46,7 @@ class Meteor {
 
     if (posDiff < collideDist && bullet.shot) {
       particlesystem[systemCount].begin(meteor.meteorPos, size); // generating the particles
-      boom = true;     // explosion is true
+      boom = true;       // explosion is true
       bullet.reset();   // once explison happens, bullet goes back to initial position (at the tank)
     }
   }
