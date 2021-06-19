@@ -1,11 +1,11 @@
 
-class Firework {
+class Meteor {
   boolean boom;      // variables for the meteor
   PVector meteorPos, meteorSpeed;
   float size, angle;
   Projectile bullet; // object bullet in order to get it' position
 
-  Firework(int xSize, int ySize, Projectile bullet) {  // meteor constructor
+  Meteor(int xSize, int ySize, Projectile bullet) {  // meteor constructor
     this.bullet = bullet;
     meteorPos = new PVector(random(100, xSize-100), -50);      //assign random position 
     meteorSpeed = new PVector(random(0, 4)-2, random(6, 2));  //assign random speed
@@ -45,7 +45,7 @@ class Firework {
     float collideDist = bullet.sizeBullet/2 + size/2; //the distance betweent the radius/2 where the objects should collide
 
     if (posDiff < collideDist && bullet.shot) {
-      particlesystem[systemCount].begin(firework.position(), firework.size()); // generating the particles
+      particlesystem[systemCount].begin(meteor.position(), meteor.size()); // generating the particles
       boom = true;     // explosion is true
       bullet.reset();   // once explison happens, bullet goes back to initial position (at the tank)
     }
@@ -60,6 +60,6 @@ class Firework {
   }
 
   float size() {
-    return size;     //float method for size of the firework
+    return size;     //float method for size of the meteor
   }
 }
