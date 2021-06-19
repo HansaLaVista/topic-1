@@ -41,7 +41,7 @@ class Ball {
       //println(catPos);
      pos = catPos.copy();
     }
-    angle = -asin(-speed.y/speed.mag()) + .5 *PI;
+    angle = acos(-speed.y/speed.mag())*(speed.x/abs(speed.x));
   }
 
   void ballLaunch(PVector setSpeed) {
