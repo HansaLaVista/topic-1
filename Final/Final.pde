@@ -20,7 +20,7 @@ Background background;
 
 void setup() {
   size(1300, 750);
-  start = new PVector(150, 4*height/5); // giving values for the starting position 
+  start = new PVector(150, .9*height); // giving values for the starting position 
   background(50, 120, 78);
 
   ball = new Ball(start, width, height);  // ball and catapult have same starting position + creating new object ball and catapult

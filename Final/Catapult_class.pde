@@ -67,7 +67,7 @@ class Catapult {
     if ( b== 'l') {
       tiltRight = false;
     }
-    if ( b=='n') {
+    if ( b==' ') {
       PVector speedSet = new PVector((sin(angle)*15), (-cos(angle)*15));
       ball.ballLaunch(speedSet);
     }
