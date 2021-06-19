@@ -1,37 +1,27 @@
-<<<<<<< HEAD:Final/Catapult_class.pde
-class Catapult {
 
-  Ball ball;    //create object within class
+class Tank {
+
+  Projectile bullet;    //create bullet object within class
   
   PVector sPos;  //initiate starting position vector and position
   float diam, rectSize, angle;
   PVector posChange;                         //change vector
   boolean moveLeft, moveRight, tiltLeft, tiltRight, stopLeft, stopRight;
-  FiringSystem [] firingSystem;
-   int sparksAmount;
-  Catapult(PVector Pos, Ball ball) {
-    this.ball = ball;                      //set ball to the same ball as in the main class
+  Tank(PVector Pos, Projectile bullet) {
+    this.bullet = bullet;                  //set bullet to the same bullet as in the main class
     sPos = Pos.copy();                    //set starting position
     diam = 50;
-    rectSize = 15;
-    sparksAmount = 15;
-  
-    firingSystem = new FiringSystem[sparksAmount];
-    for (int i = 0; i<sparksAmount; i++) {               //create the objects within array
-      firingSystem[i] = new FiringSystem();
-    }
-   
+    rectSize = 15;  
   }
   void Update() {
     action();
   }
 
-  void Display() {     
+  void Display() {      //drawing the tank and barrel
     stroke(1);   
     pushMatrix();
     translate(sPos.x, sPos.y-60+rectSize*3.5);
     rotate(angle);
-    firingSystem[systemCount].begin(sPos, ball.sizeBullet); // generating the particles
     rectMode(CENTER);
     fill(200,40,40);
     rect(0, -rectSize*3.5, rectSize, rectSize*7);
@@ -44,28 +34,23 @@ class Catapult {
     vertex(sPos.x+40, sPos.y-40);
     vertex(sPos.x+40, sPos.y-20);
     endShape();
-    
-      for (int i=0; i<systemAmount; i++) {  //for loop for updating and rendering object array
-      firingSystem[i].update();
-      firingSystem[i].render();
-    }
    
   }
 
   void Dragged(int x, int y) {
-    posChange = new PVector(x, y);          //set position change vector based on mouse x and y passed beforehand
-    ball.dragged(posChange);               //call ball dragging function in ball object
+    posChange = new PVector(x, y);            //set position change vector based on mouse x and y passed beforehand
+    bullet.dragged(posChange);               //call bullet dragging function in bullet object
   }
 
 
-  void actionCheck(char b) {
+  void actionCheck(char b) { // if user presses a --> tank moves left
     if (b == 'a') {
       moveLeft = true;
     }
-    if ( b== 'd') {
+    if ( b== 'd') {       // ifuser presses d --> tank moves right
       moveRight = true;
     }
-    if ( b== 'j'&& !stopLeft) {
+    if ( b== 'j'&& !stopLeft) {    // rotation booleans
       tiltLeft = true;
     }
     if ( b== 'l' && !stopRight) {
@@ -73,7 +58,7 @@ class Catapult {
     }
   }
 
-  void haltCheck(char b) {
+  void haltCheck(char b) {  // if key is released, booleans for movements are set to false
     if (b == 'a') {
       moveLeft = false;
     }
@@ -86,13 +71,13 @@ class Catapult {
     if ( b== 'l') {
       tiltRight = false;
     }
-    if ( b==' ' && !ball.shot) {
-      PVector speedSet = new PVector((sin(angle)*15), (-cos(angle)*15));
-      ball.ballLaunch(speedSet);
+    if ( b==' ' && !bullet.shot) { // shoot the projectile by pressing the spacebar
+      PVector speedSet = new PVector((sin(angle)*15), (-cos(angle)*15)); 
+      bullet.ProjectileLaunch(speedSet);  // bullet is rotated to the angle of the barrel
     }
   }
 
-  void action() {
+  void action() {    //
     if (moveLeft) {
       sPos.x-=3;
     }
@@ -105,13 +90,13 @@ class Catapult {
     if (tiltRight) {
       angle+=0.045;
     }
-    if (angle>1.3) {
+    if (angle>1.3) {   // setting right limit for the rotation of the barrel
       stopRight=true;
       tiltRight=false;
     } else {
       stopRight=false;
     }
-    if (angle<-1.3) {
+    if (angle<-1.3) { // setting left limit for the rotation of the barrel
       stopLeft= true;
       tiltLeft= false;
     } else {
@@ -123,6 +108,7 @@ class Catapult {
     return sPos.copy();
   }
 }
+<<<<<<< Updated upstream
 =======
 class Tank {
 
@@ -231,3 +217,5 @@ class Tank {
   }
 }
 >>>>>>> main:Final/Tank_class.pde
+=======
+>>>>>>> Stashed changes

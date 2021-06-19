@@ -1,12 +1,11 @@
 class FiringSystem {
 
   int amount;
-  Spark [] sparks;
+  Spark [] sparks;       //  array of object sparks for the flare
   boolean started=false;
   float size;
-
-  FiringSystem() {
-    amount = 100;
+  FiringSystem() {     
+  amount = 100;    // amount of sparks for the rocket flare
   }
 
 
@@ -29,8 +28,8 @@ class FiringSystem {
     }
   }
   
-  void begin(PVector pos, float fSize, float angle) { // initiates the system 
-    started = true;                     // true for the explosion
+  void begin(PVector pos, float fSize, float angle) { // initiates the flare system  
+    started = true;                                  // true for the explosion so sparks are called
     size = -fSize;
     sparks = new Spark [amount];
     for (int i = 0; i<amount; i++) {

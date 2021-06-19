@@ -1,7 +1,7 @@
 class ParticleSystem {
                           // variables for the particle system
-  Particle [] particles; // creating array of partciles for the system
-  int amount; 
+  Particle [] particles; // creating array of partciles for the explosion system
+  int amount;       
   boolean started=false;
 
  
@@ -27,10 +27,10 @@ class ParticleSystem {
 
   void begin(PVector pos, float fSize) { // initiates the system 
     started = true;                     // true for the explosion
-    particles = new Particle [amount];
+    particles = new Particle [amount];  
 
     for (int i = 0; i<amount; i++) {
-      particles[i] = new Particle(pos, fSize);
+      particles[i] = new Particle(pos, fSize); 
     }
   }
 }
