@@ -56,8 +56,7 @@ void draw() {           // displaying background, ball and catapult
   firework.update();        //firework update and render
   firework.render();
   firework.collide();
-  if (firework.explosion()) {  //checks if firework has exploded, starts explosion
-    // particlesystem[systemCount].begin(firework.position(),firework.size());    
+  if (firework.explosion() || firework.meteorPos.y > 1.2*height) {  //checks if firework has exploded, starts explosion 
     firework = new Firework(width, height, ball);  //new firework 
     systemCount++;                           //variable increases for object array
     if (systemCount>=systemAmount-1) {        //variable resets
