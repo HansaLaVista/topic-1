@@ -4,7 +4,7 @@ class Catapult {
   PVector sPos;  //initiate starting position vector and position
   float diam, rectSize, angle;
   PVector posChange;                         //change vector
-  boolean moveLeft, moveRight, tiltLeft, tiltRight;
+  boolean moveLeft, moveRight, tiltLeft, tiltRight, stopLeft, stopRight;
   Catapult(PVector Pos, Ball ball) {
     this.ball = ball;                      //set ball to the same ball as in the main class
     sPos = Pos.copy();                    //set starting position
@@ -18,7 +18,7 @@ class Catapult {
   void Display() {     
     stroke(1);   
     pushMatrix();
-    translate(sPos.x,sPos.y-60+rectSize*3.5);
+    translate(sPos.x, sPos.y-60+rectSize*3.5);
     rotate(angle);
     rectMode(CENTER);
     rect(0, -rectSize*3.5, rectSize, rectSize*7);
@@ -50,10 +50,10 @@ class Catapult {
     if ( b== 'd') {
       moveRight = true;
     }
-    if ( b== 'j') {
+    if ( b== 'j'&& !stopLeft) {
       tiltLeft = true;
     }
-    if ( b== 'l') {
+    if ( b== 'l' && !stopRight) {
       tiltRight = true;
     }
   }
@@ -74,7 +74,6 @@ class Catapult {
   }
 
   void action() {
-
     if (moveLeft) {
       sPos.x-=3;
     }
@@ -83,16 +82,19 @@ class Catapult {
     }
     if (tiltLeft) {
       angle-=.03;
-      if(angle>1){
-       tiltLeft= false; 
-      }
-      println(angle);
     }
     if (tiltRight) {
       angle+=0.03;
-      if(angle<-1){
-       tiltRight=false; 
-      }
+    }
+    if (angle>1) {
+      stopRight=true;
+    } else {
+      stopRight=false;
+    }
+    if (angle<-1) {
+      stopLeft= true;
+    } else {
+      stopLeft=false;
     }
   }
 
