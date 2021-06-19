@@ -11,7 +11,7 @@ class Particle {
   boolean trail;
 
 
-  Particle(PVector pos, float fSize) { // Particle constructor
+  Particle (PVector pos, float fSize) { // Particle constructor
     partPos = pos.copy();
     partVelocity = new PVector(random(-5, 5), random(-5, 5));      // velocity has random PVector values
     partAcceleration = new PVector(.99, .99);                     // acceleration has random PVcetor values
