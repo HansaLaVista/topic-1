@@ -8,8 +8,6 @@ class Ball {
   boolean dragging = false;
   int screenX, screenY;
   float angle;
-  FiringSystem [] firingSystem;
-  int sparksAmount;
 
   Ball(PVector start, int widt, int heigt) {
     angle = 0;
@@ -17,12 +15,7 @@ class Ball {
     screenY = heigt;
     pos = start.copy();                              //copy vector for start position
     speed = new PVector(0, 0);        //set speed to 0
-    sparksAmount = 15;
 
-    firingSystem = new FiringSystem[sparksAmount];
-    for (int i = 0; i<sparksAmount; i++) {               //create the objects within array
-      firingSystem[i] = new FiringSystem();
-    }
   }
 
 
@@ -37,10 +30,7 @@ class Ball {
     rect(0, sizeBullet/2, sizeBullet, sizeBullet*2);
     popMatrix();
 
-    for (int i=0; i<systemAmount; i++) {  //for loop for updating and rendering object array
-      firingSystem[i].update();
-      firingSystem[i].render();
-    }
+
   }
 
   void ballUpdate(PVector catPos) {
@@ -62,7 +52,6 @@ class Ball {
     speed = setSpeed.copy();          //set speed of ball
     shot = true;                      //ball has been shot
     dragging = false;
-    firingSystem[systemCount].begin(pos, ball.sizeBullet); // generating the particles
   }
   void dragged(PVector drag) {
     pos = drag.copy();      //update ball position according to the mouse coordinates
