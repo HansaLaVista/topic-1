@@ -4,47 +4,41 @@
 //Assignment 3.2
 
 PVector start;       // starting positon vector
-Projectile bullet;          // calling class Projectile
-Tank tank;   // calling class Tank
-boolean dragging = false; // boolean for checking dragging
-
-MassDamper [] tentacles ;
-int amount = 100;
+int amount = 100;             //set amount of massdamper systems
+int systemCount;              //counter for particle systems
+int systemAmount;             //max mparticle systems
 
 Meteor meteor;                //initiate objects and variables
-ParticleSystem [] particlesystem;
-int systemCount;
-int systemAmount;
+ParticleSystem [] particlesystem;   //particle system array
+Background background;              //background
+Menu menu;                          //menu
+MassDamper [] tentacles ;           //initiate massdamper array
+Projectile bullet;                  // calling class Projectile
+Tank tank;                          // calling class Tank
 
-Background background;
-Menu menu;
 
 void setup() {
   size(1300, 750);
   start = new PVector(150, .8*height); // giving values for the starting position 
-  background(50, 120, 78);
-
+  background(50, 120, 78);             //background colour  
   bullet = new Projectile(start, width, height);  // bullet and tank have same starting position + creating new object bullet and tank
   tank = new Tank(start, bullet);
-
-  tentacles = new MassDamper [amount];
-  background = new Background(width, height);
-
+  tentacles = new MassDamper [amount];            //initiate array
+  background = new Background(width, height);     //initiate background and objects in array
   for (int i = 0; i<amount; i++) {
     tentacles[i] = new MassDamper((random(0, width)), height);
   }
-
   systemCount = 0;                //give initial values to variables
   systemAmount = 4;
-  meteor = new Meteor(width, height, bullet);  //create object
+  meteor = new Meteor(width, bullet);  //create object
   particlesystem = new ParticleSystem[systemAmount];  //create object array
   for (int i = 0; i<systemAmount; i++) {               //create the objects within array
     particlesystem[i] = new ParticleSystem();
   }
-  menu = new Menu(width, height);
+  menu = new Menu(width, height);    //creating menu
 }
 
-void draw() {           // displaying background, bullet and tank
+void draw() {           // displaying background, bullet, tentacles, menu, meteor, tank and the projectile
   background(251, 204, 209);
   background.Display();
   bullet.ProjectileUpdate(tank.position());
@@ -55,12 +49,12 @@ void draw() {           // displaying background, bullet and tank
     tentacles[i].render();
     tentacles[i].update();
   }
-  meteor.update();        //meteor update and render
+  meteor.update();        //meteor update, render and collision detection
   meteor.render();
   meteor.collide();
-  if (meteor.explosion() || meteor.meteorPos.y > 1.2*height) {  //checks if meteor has exploded, starts explosion
-    menu.update(meteor.explosion());
-    meteor = new Meteor(width, height, bullet);  //new meteor 
+  if (meteor.boom || meteor.meteorPos.y > 1.2*height) {  //checks if meteor has exploded, starts explosion
+    menu.update(meteor.boom);              //update score in menu
+    meteor = new Meteor(width, bullet);  //new meteor 
     systemCount++;                           //variable increases for object array
     if (systemCount>=systemAmount-1) {        //variable resets
       systemCount = 0;
@@ -70,26 +64,11 @@ void draw() {           // displaying background, bullet and tank
     particlesystem[i].update();
     particlesystem[i].render();
   }
-  menu.display(meteor.boom);
-}
-
-void mouseDragged() {              
-  PVector bulletpos = bullet.callPos();
-  boolean shot = bullet.callShot();
-  if ((sqrt(pow(mouseX-bulletpos.x, 2)+pow(mouseY-bulletpos.y, 2)) <= 25 || dragging)&& !shot) { // checking if the mouse is wihtin the bullet's diameter or if the user is dragging, and the bullet is not shot
-    tank.Dragged(mouseX, mouseY); // give the bullet's position to mouseX and mouseY
-    dragging=true; // checking for dragging
-  }
-}
-
-void mouseReleased() { 
-  if (dragging) {
-    dragging = false; // user is not dragging so the bullet can be released
-  }
+  menu.display();          //display menu, 
 }
 
 void keyPressed() {
-  char pressedKey = key;
+  char pressedKey = key;                  //if key is pressed, pass the value on to objects that have direct interaction
   tank.actionCheck(pressedKey);
   background.moveCheck(pressedKey);
   for (int i=0; i<amount; i++) {
@@ -97,7 +76,7 @@ void keyPressed() {
   }
 }
 
-void keyReleased() {
+void keyReleased() {                      //if key released, pass the value on to object that have direct interaction 
   char releasedKey = key;
   tank.haltCheck(releasedKey);
   background.haltCheck(releasedKey);

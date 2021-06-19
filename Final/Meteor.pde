@@ -3,9 +3,9 @@ class Meteor {
   boolean boom;      // variables for the meteor
   PVector meteorPos, meteorSpeed;
   float size, angle;
-  Projectile bullet; // object bullet in order to get it' position
+  Projectile bullet; // object bullet in order to get it's position
 
-  Meteor(int xSize, int ySize, Projectile bullet) {  // meteor constructor
+  Meteor(int xSize, Projectile bullet) {  // meteor constructor
     this.bullet = bullet;
     meteorPos = new PVector(random(100, xSize-100), -50);      //assign random position 
     meteorSpeed = new PVector(random(0, 4)-2, random(6, 2));  //assign random speed
@@ -15,7 +15,7 @@ class Meteor {
   }
 
   void render() {        // drawaing the meteor shape
-    fill(192,192,192);  //meteor color
+    fill(192, 192, 192);  //meteor color
     stroke(1); 
     pushMatrix();
     translate(meteorPos.x, meteorPos.y);    //translate and rotate
@@ -23,13 +23,13 @@ class Meteor {
     beginShape();             // make shape
     vertex(-size/4, -size/2);
     vertex(size/4, -size/2);
-    vertex(size/2,-size/4);
-    vertex(size/2,size/4);
-    vertex(size/4,size/2);
-    vertex(-size/4,size/2);
-    vertex(-size/2,size/4);
-    vertex(-size/2,-size/4);
-     vertex(-size/4, -size/2);
+    vertex(size/2, -size/4);
+    vertex(size/2, size/4);
+    vertex(size/4, size/2);
+    vertex(-size/4, size/2);
+    vertex(-size/2, size/4);
+    vertex(-size/2, -size/4);
+    vertex(-size/4, -size/2);
     endShape();
     popMatrix();
   }
@@ -45,21 +45,9 @@ class Meteor {
     float collideDist = bullet.sizeBullet/2 + size/2; //the distance betweent the radius/2 where the objects should collide
 
     if (posDiff < collideDist && bullet.shot) {
-      particlesystem[systemCount].begin(meteor.position(), meteor.size()); // generating the particles
+      particlesystem[systemCount].begin(meteor.meteorPos, size); // generating the particles
       boom = true;     // explosion is true
       bullet.reset();   // once explison happens, bullet goes back to initial position (at the tank)
     }
-  }
-
-  boolean explosion() {  //boolean method for checking explosion
-    return boom;
-  }
-
-  PVector position() {
-    return meteorPos;   //pvector method for the position
-  }
-
-  float size() {
-    return size;     //float method for size of the meteor
   }
 }

@@ -8,7 +8,6 @@ class Particle {
   color partColour;
   int alpha;
   int startTime;
-  boolean trail;
 
 
   Particle (PVector pos, float fSize) { // Particle constructor
@@ -31,7 +30,7 @@ class Particle {
     if (millis() - startTime > 2000) { 
       alpha -= 5;                      // 2 seconds after explosion, partciles start fading
     }
-    fill(partColour, alpha);   
+    fill(partColour, alpha);           //colour, stroke and draw
     noStroke();
     ellipse(partPos.x, partPos.y, partSize, partSize);  
   }

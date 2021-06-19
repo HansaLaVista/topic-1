@@ -84,14 +84,13 @@ class Projectile {
   PVector acceleration = new PVector(0, 0.2);  //set set gravity and 'wind resistance'
   float windRes =.997;
   boolean shot= false;
-  boolean dragging = false;
   int screenX, screenY;
   float angle;
   FiringSystem [] firingSystem;
   int sparksAmount;
 
   Projectile(PVector start, int widt, int heigt) {
-    angle = 0;
+    angle = 0;                              //initial values for variables
     screenX = widt;
     screenY = heigt;
     pos = start.copy();                              //copy vector for start position
@@ -128,7 +127,7 @@ class Projectile {
       if (pos.y >=screenY) {         // check if the Projectile is above bottom of the screen
         reset();
       }
-    } else if (!dragging) {
+    } else {
       pos = tankPos.copy();
     }
     angle = acos(-speed.y/speed.mag())*(speed.x/abs(speed.x));
@@ -137,25 +136,13 @@ class Projectile {
   void ProjectileLaunch(PVector setSpeed) {
     speed = setSpeed.copy();          //set speed of Projectile
     shot = true;                      //Projectile has been shot
-    dragging = false;
     firingSystem[systemCount].begin(pos, bullet.sizeBullet, angle); // generating the particles
   }
-  void dragged(PVector drag) {
-    pos = drag.copy();      //update Projectile position according to the mouse coordinates
-    dragging = true;
-  }
+  
   void reset() {
     speed = new PVector(0, 0);//otherwise reset the Projectile to the tank
     pos = start.copy();
     shot = false;
-    dragging = false;
-  }
-
-  PVector callPos() {
-    return(pos);                      //return Projectile position
-  }
-  boolean callShot() {
-    return(shot);                     //return if the Projectile has been shot or not
   }
 }
 >>>>>>> main
