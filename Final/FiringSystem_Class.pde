@@ -3,7 +3,7 @@ class FiringSystem {
   int amount;
   Spark [] sparks;
   boolean started=false;
-
+  float size;
 
   FiringSystem() {
     amount = 100;
@@ -22,16 +22,19 @@ class FiringSystem {
     if (started) { 
       for (int i = 0; i<amount; i++) {
         sparks[i].sparksUpdate();
+        if (sparks[i].alpha < 10){
+          sparks[i] = new Spark(15);
+        }
       }
     }
   }
   
   void begin(PVector pos, float fSize, float angle) { // initiates the system 
     started = true;                     // true for the explosion
-    
+    size = -fSize;
     sparks = new Spark [amount];
     for (int i = 0; i<amount; i++) {
-      sparks[i] = new Spark(pos, -fSize);
+      sparks[i] = new Spark(size);
     }
   }
 }

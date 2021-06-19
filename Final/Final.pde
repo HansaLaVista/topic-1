@@ -4,11 +4,11 @@
 //Assignment 3.2
 
 PVector start;       // starting positon vector
-Ball ball;          // calling class Ball
-Catapult catapult;   // calling class Catapult
+Projectile bullet;          // calling class Projectile
+Tank tank;   // calling class Tank
 boolean dragging = false; // boolean for checking dragging
 
-MassDamper [] grass ;
+MassDamper [] tentacles ;
 int amount = 100;
 
 Firework firework;                //initiate objects and variables
@@ -17,47 +17,50 @@ int systemCount;
 int systemAmount;
 
 Background background;
+Menu menu;
 
 void setup() {
   size(1300, 750);
-  start = new PVector(150, .9*height); // giving values for the starting position 
+  start = new PVector(150, .8*height); // giving values for the starting position 
   background(50, 120, 78);
 
-  ball = new Ball(start, width, height);  // ball and catapult have same starting position + creating new object ball and catapult
-  catapult = new Catapult(start, ball);
+  bullet = new Projectile(start, width, height);  // bullet and tank have same starting position + creating new object bullet and tank
+  tank = new Tank(start, bullet);
 
-  grass = new MassDamper [amount];
+  tentacles = new MassDamper [amount];
   background = new Background(width, height);
 
   for (int i = 0; i<amount; i++) {
-    grass[i] = new MassDamper((random(0, width)), height);
+    tentacles[i] = new MassDamper((random(0, width)), height);
   }
 
   systemCount = 0;                //give initial values to variables
   systemAmount = 4;
-  firework = new Firework(width, height,ball);  //create object
+  firework = new Firework(width, height, bullet);  //create object
   particlesystem = new ParticleSystem[systemAmount];  //create object array
   for (int i = 0; i<systemAmount; i++) {               //create the objects within array
     particlesystem[i] = new ParticleSystem();
   }
+  menu = new Menu(width, height);
 }
 
-void draw() {           // displaying background, ball and catapult
-  background(10, 10, 44);
+void draw() {           // displaying background, bullet and tank
+  background(251, 204, 209);
   background.Display();
-  ball.ballUpdate(catapult.position());
-  ball.ballDisplay(); 
-  catapult.Display();
-  catapult.Update();
+  bullet.ProjectileUpdate(tank.position());
+  bullet.ProjectileDisplay(); 
+  tank.Display();
+  tank.Update();
   for (int i = 0; i <amount; i++) {
-    grass[i].render();
-    grass[i].update();
+    tentacles[i].render();
+    tentacles[i].update();
   }
   firework.update();        //firework update and render
   firework.render();
   firework.collide();
-  if (firework.explosion() || firework.meteorPos.y > 1.2*height) {  //checks if firework has exploded, starts explosion 
-    firework = new Firework(width, height, ball);  //new firework 
+  if (firework.explosion() || firework.meteorPos.y > 1.2*height) {  //checks if firework has exploded, starts explosion
+    menu.update(firework.explosion());
+    firework = new Firework(width, height, bullet);  //new firework 
     systemCount++;                           //variable increases for object array
     if (systemCount>=systemAmount-1) {        //variable resets
       systemCount = 0;
@@ -67,37 +70,38 @@ void draw() {           // displaying background, ball and catapult
     particlesystem[i].update();
     particlesystem[i].render();
   }
+  menu.display(firework.boom);
 }
 
 void mouseDragged() {              
-  PVector ballpos = ball.callPos();
-  boolean shot = ball.callShot();
-  if ((sqrt(pow(mouseX-ballpos.x, 2)+pow(mouseY-ballpos.y, 2)) <= 25 || dragging)&& !shot) { // checking if the mouse is wihtin the ball's diameter or if the user is dragging, and the ball is not shot
-    catapult.Dragged(mouseX, mouseY); // give the ball's position to mouseX and mouseY
+  PVector bulletpos = bullet.callPos();
+  boolean shot = bullet.callShot();
+  if ((sqrt(pow(mouseX-bulletpos.x, 2)+pow(mouseY-bulletpos.y, 2)) <= 25 || dragging)&& !shot) { // checking if the mouse is wihtin the bullet's diameter or if the user is dragging, and the bullet is not shot
+    tank.Dragged(mouseX, mouseY); // give the bullet's position to mouseX and mouseY
     dragging=true; // checking for dragging
   }
 }
 
 void mouseReleased() { 
   if (dragging) {
-    dragging = false; // user is not dragging so the ball can be released
+    dragging = false; // user is not dragging so the bullet can be released
   }
 }
 
 void keyPressed() {
   char pressedKey = key;
-  catapult.actionCheck(pressedKey);
- background.moveCheck(pressedKey);
- for(int i=0; i<amount; i++){
- grass[i].moveCheck(pressedKey); 
- }
+  tank.actionCheck(pressedKey);
+  background.moveCheck(pressedKey);
+  for (int i=0; i<amount; i++) {
+    tentacles[i].moveCheck(pressedKey);
+  }
 }
 
 void keyReleased() {
   char releasedKey = key;
-  catapult.haltCheck(releasedKey);
+  tank.haltCheck(releasedKey);
   background.haltCheck(releasedKey);
- for(int i=0; i<amount; i++){
- grass[i].haltCheck(releasedKey); 
- }  
+  for (int i=0; i<amount; i++) {
+    tentacles[i].haltCheck(releasedKey);
+  }
 }
