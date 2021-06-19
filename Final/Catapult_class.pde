@@ -1,23 +1,18 @@
 class Catapult {
 
   Ball ball;    //create object within class
-  FiringSystem [] firingSystem;
   
   PVector sPos;  //initiate starting position vector and position
   float diam, rectSize, angle;
   PVector posChange;                         //change vector
   boolean moveLeft, moveRight, tiltLeft, tiltRight, stopLeft, stopRight;
-  int sparksAmount;
   Catapult(PVector Pos, Ball ball) {
     this.ball = ball;                      //set ball to the same ball as in the main class
     sPos = Pos.copy();                    //set starting position
     diam = 50;
     rectSize = 15;
-    sparksAmount = 15;
-    firingSystem = new FiringSystem[sparksAmount];
-     for (int i = 0; i<sparksAmount; i++) {               //create the objects within array
-    firingSystem[i] = new FiringSystem();
-  }
+  
+   
   }
   void Update() {
     action();
@@ -28,9 +23,6 @@ class Catapult {
     pushMatrix();
     translate(sPos.x, sPos.y-60+rectSize*3.5);
     rotate(angle);
-    if(ball.shot){
-    firingSystem[systemCount].begin(ball.pos, ball.sizeBullet); // generating the particles
-    }
     rectMode(CENTER);
     fill(200,40,40);
     rect(0, -rectSize*3.5, rectSize, rectSize*7);
@@ -43,11 +35,7 @@ class Catapult {
     vertex(sPos.x+40, sPos.y-40);
     vertex(sPos.x+40, sPos.y-20);
     endShape();
-    
-     for (int i=0; i<systemAmount; i++) {  //for loop for updating and rendering object array
-    firingSystem[i].update();
-    firingSystem[i].render();
-  }
+   
   }
 
   void Dragged(int x, int y) {
