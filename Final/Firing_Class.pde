@@ -12,13 +12,13 @@ class Spark {
 
 
 
-  Spark(PVector pos, float size) {
-    sparkPos = pos.copy();
-    sparkVelocity = new PVector(random(-5, 5), random(-5, 5));      // velocity has random PVector values
+  Spark(float size) {
+    sparkPos = new PVector(0,size*2);
+    sparkVelocity = new PVector(randomGaussian()*2+1, randomGaussian()*3+10);      // velocity has random PVector values
     sparkAcceleration = new PVector(.99, .99);                     // acceleration has random PVcetor values
     sparkSize = (random(1, 5)*.05*size);                          // size of the partciles are random
-    sparkColour = color(random(255), random(255), random(255));  // colors of the particles are random
-    alpha = 255;                                                // alpha channel of the particles starts at max
+    sparkColour = color(200, 0, 0);  // colors of the particles are random
+    alpha = int(random(150,255));                                                // alpha channel of the particles starts at max
     startTime = millis();
   }
   
@@ -26,7 +26,7 @@ class Spark {
   
     void sparksRender() {               // draw the partciles & fading
     if (millis() - startTime > 2000) { 
-      alpha -= 5;                      // 2 seconds after explosion, partciles start fading
+      alpha -= int(random(10, 20));                      // 2 seconds after explosion, partciles start fading
     }
     fill(sparkColour, alpha);   
     noStroke();
@@ -37,5 +37,6 @@ class Spark {
    void sparksUpdate() { // update the velocity and position of the partciles 
     sparkVelocity = sparkVelocity.mult(.97);
     sparkPos = sparkPos.add(sparkVelocity);
+    alpha -= int(random(10, 20));
   }
 }

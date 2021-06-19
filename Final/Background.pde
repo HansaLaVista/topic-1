@@ -22,7 +22,7 @@ boolean moveLeft, moveRight;
 
 
   for (x=0; x<=xSize; x++) {    //set coordinates for the entire screen
-    vertex(x, ySize/3+(noise(xoff)*200));  //use noise function to create terrain visual
+    vertex(x, ySize/2.5+(noise(xoff)*200));  //use noise function to create terrain visual
     xoff += xincrement; 
   } 
 
