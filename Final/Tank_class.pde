@@ -39,7 +39,6 @@ class Tank {
 
   void Dragged(int x, int y) {
     posChange = new PVector(x, y);            //set position change vector based on mouse x and y passed beforehand
-    bullet.dragged(posChange);               //call bullet dragging function in bullet object
   }
 
 

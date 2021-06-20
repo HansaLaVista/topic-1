@@ -60,18 +60,15 @@ class Projectile {
   void ProjectileLaunch(PVector setSpeed) {
     speed = setSpeed.copy();          //set speed of Projectile
     shot = true;                      //Projectile has been shot
-    dragging = false;
+   dragging = false;
     firingSystem[systemCount].begin(pos, bullet.sizeBullet, angle); // generating the particles
   }
-  void dragged(PVector drag) {
-    pos = drag.copy();      //update Projectile position according to the mouse coordinates
-    dragging = true;
-  }
+ 
   void reset() {
     speed = new PVector(0, 0);//otherwise reset the Projectile to the tank
     pos = start.copy();
     shot = false;
-    dragging = false;
+   dragging = false;
   }
 
   PVector callPos() {

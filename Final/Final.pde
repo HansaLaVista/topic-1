@@ -1,7 +1,7 @@
 
-//Felipe Ramires & Hans Nielen
-//Topic 3 Forces
-//Assignment 3.2
+//Felipe Ramires & Hans Nielen  - 2486512 & 2336693
+// Final Assignment Algorithms in Create - June 20 2021
+
 
 PVector start;       // starting positon vector
 int amount = 100;             //set amount of massdamper systems
